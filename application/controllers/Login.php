@@ -8,7 +8,7 @@ class Login extends CI_Controller{
         $this->load->model('Admin');
 		if ($this->session->has_userdata('authenticated')){
 			$this->session->set_flashdata('logout','Please logout first'); 
-			redirect('Admin');
+			redirect('Admin/Dashboard');
 		}
     }
 
@@ -34,7 +34,7 @@ class Login extends CI_Controller{
 				$this->session->set_userdata('auth_user',$auth_userdetails);
 				$this->session->set_userdata('authenticated',"1");
 				$this->session->set_flashdata('success','Login Succesfully');
-				redirect('Admin');
+				redirect('Admin/Dashboard');
 			}
 			else{
 				$this->session->set_flashdata('loginerror','Invalid Username or Password'); 
