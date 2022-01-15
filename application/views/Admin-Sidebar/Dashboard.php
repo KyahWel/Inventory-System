@@ -1,24 +1,11 @@
-
-    <title>Sample Admin Page</title>
+<?php $this->load->view("AdminSidebar") ?>
+    <title>Dashboard</title>
     <link href=<?php echo base_url("")?> rel="stylesheet">
   </head>
 
   <body>
- <div class="container">
-    <?php if($this->session->flashdata('logout')) : ?>
-        <div class="alert alert-danger alert-dismissible fade show">
-            <?= $this->session->flashdata('logout'); ?>
-            <button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>  
-    <?php if($this->session->flashdata('success')) : ?>
-        <div class="alert alert-success alert-dismissible fade show">
-            <?= $this->session->flashdata('success'); ?>
-            <button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
-        </div>
-    <?php endif; ?>  
- </div>
- <div class="container py-4 row-6">
+ 
+ <div class="container col-9">
     <h3>Admin Data Check</h3> <br>
     <div class="border border-primary col-6 p-3">
         <b>Username:</b>  <?= $this->session->userdata('auth_user')['username']?><br> 
@@ -26,7 +13,6 @@
         <b>Name: </b><?= $this->session->userdata('auth_user')['firstname']?> <?= $this->session->userdata('auth_user')['lastname']?><br>
         <b>Data Added: </b><?php echo date('m/d/Y', strtotime($this->session->userdata('auth_user')['dateAdded']))?> at <?php echo date('h:i:s a', strtotime($this->session->userdata('auth_user')['timeAdded']))?><br>
         <b>Logged in: </b><span id="day"></span> <span id="date"></span> at <span id="time"></span> <br>
-        <a href="<?php echo base_url('Logout'); ?>" class="nav_link" id="logout"> <i class='fa fa-sign-out-alt nav_icon'></i> <span class="nav_name">LogOut</span> </a>
     </div>
 </div> 
 

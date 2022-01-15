@@ -56,4 +56,10 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['Employee'] = 'Employee';
 $route['Admin'] = 'Login';
-$route['Admin/Home'] = 'Admin/Home';
+$route['Admin/Dashboard'] = 'Admin/Dashboard';
+$route['Admin/Admin-List'] = 'Admin/Admin';
+$route['Admin/Employee-List'] = 'Admin/Employee';
+$route['Admin/Payroll'] = 'Admin/Payroll';
+$route['Admin/Profile'] = 'Admin/Profile';
+$route['Admin/Event-Log'] = 'Admin/Event';
+$route['Admin/ChangePassword'] = 'Admin/ChangePassword';
