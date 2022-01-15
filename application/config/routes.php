@@ -55,5 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['Employee'] = 'Employee';
-$route['Login'] = 'Login';
-$route['Admin'] = 'Admin';
+$route['Login'] = 'Login/LoginPage';
+$route['Admin'] = 'Admin/Home';
+$route['Admin/Dashboard'] = 'Admin';
