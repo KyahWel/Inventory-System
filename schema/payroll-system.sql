@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 14, 2022 at 04:31 PM
+-- Generation Time: Jan 15, 2022 at 06:32 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS `admin-accounts` (
   `password` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
+  `dateAdded` date NOT NULL,
+  `timeAdded` time NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -41,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `admin-accounts` (
 -- Dumping data for table `admin-accounts`
 --
 
-INSERT INTO `admin-accounts` (`id`, `username`, `password`, `firstname`, `lastname`) VALUES
-(1, 'admin', 'admin', 'William Cris', 'Hod');
+INSERT INTO `admin-accounts` (`id`, `username`, `password`, `firstname`, `lastname`, `dateAdded`, `timeAdded`) VALUES
+(1, 'admin', 'admin', 'William Cris', 'Hod', '2022-01-15', '14:08:29');
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `employee-accounts` (
   `pagibig-number` varchar(255) NOT NULL,
   `philhealth-number` varchar(255) NOT NULL,
   `tin-number` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `employmentDate` date NOT NULL,
   PRIMARY KEY (`employeeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
