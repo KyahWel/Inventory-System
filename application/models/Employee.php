@@ -24,10 +24,10 @@ class Employee extends CI_Model {
 			'lastname' => $_POST['lastname'],
 			'age' => $_POST['age'],
 			'position' => $_POST['position'],
-			'sss-number' => $_POST['sss-number'],
-			'pagibig-number' => $_POST['pagibig-number'],
-			'philhealth-number' => $_POST['philhealth-number'],
-			'tin-number' => $_POST['tin-number'],
+			'sss_number' => $_POST['sss-number'],
+			'pagibig_number' => $_POST['pagibig-number'],
+			'philhealth_number' => $_POST['philhealth-number'],
+			'tin_number' => $_POST['tin-number'],
 			'employmentDate' => $_POST['employmentDate']	
 		);
 		$this->db->insert('employee-accounts',$data);
@@ -59,7 +59,7 @@ class Employee extends CI_Model {
 		$this->db->update('employee-accounts',$data);
 	}
 
-	public function deleteAdmin($id){ #Delete
+	public function deleteData($id){ #Delete
 		$this->db->where('employeeID',$id);
 		$this->db->delete('employee-accounts');
 	}

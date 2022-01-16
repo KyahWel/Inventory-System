@@ -1,4 +1,4 @@
-<?php //$this->load->view("AdminSidebar") ?>
+<?php $this->load->view("AdminSidebar") ?>
     <title>Employees</title>
     <link href=<?php echo base_url("")?> rel="stylesheet">
   </head>
@@ -35,7 +35,7 @@
                                 <td><?php echo $row->position?></td>
                                 <td>
                                     <button class="view_employee" data-id="<?php echo $row->employeeID?>" id="viewEmployee" data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">View</button>
-                                    <button id="deleteEmployee">Delete</button>
+                                    <button id="deleteEmployee" onclick="location.href='<?php echo site_url('EmployeeFunctions/deleteEmployee')?>/<?php echo $row->employeeID; ?>'">Delete</button>
                                 </td>
                             </tr>
                             <?php } ?>   
@@ -103,7 +103,7 @@
 <!-- jQuery JS CDN -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> 
  <!-- jQuery DataTables JS CDN -->
- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js%22%3E"></script>
+ <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
  <!-- Ajax fetching data -->
  <script type="text/javascript">
     $(document).ready(function(){

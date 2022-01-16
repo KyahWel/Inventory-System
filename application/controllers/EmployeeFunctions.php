@@ -21,15 +21,15 @@ class EmployeeFunctions extends CI_Controller {
 		$EmployeeData = $this->input->post('employeeData');
         $records = $this->Employee->getData($EmployeeData);
 		$output ='
-			<p>First Name: </p>
-                <p>Last Name: </p>
-                <p>Age: </p>
-                <p>Position:</p>
-                <p>SSS Number: </p>
-                <p>Pag-IBIG Number: </p>
-                <p>PhilHealth Number:</p>
-                <p>TIN Number:</p>
-                <p>Employment Date: </p>
+				<p>First Name: '.$records->firstname.'</p>
+                <p>Last Name: '.$records->lastname.'</p>
+                <p>Age: '.$records->age.'</p>
+                <p>Position: '.$records->position.'</p>
+                <p>SSS Number: '.$records->sss_number.'</p>
+                <p>Pag-IBIG Number: '.$records->pagibig_number.'</p>
+                <p>PhilHealth Number: '.$records->philhealth_number.'</p>
+                <p>TIN Number: '.$records->tin_number.'</p>
+                <p>Employment Date: '.$records->employmentDate.'</p>
                 <div class="editAnnouncementButton d-flex justify-content-end">
                     <button type="button" value="submit" data-bs-dismiss="modal">Okay</button>
                 </div>
