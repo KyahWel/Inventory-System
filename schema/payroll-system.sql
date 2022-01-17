@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 17, 2022 at 12:44 PM
+-- Generation Time: Jan 17, 2022 at 06:47 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -29,22 +29,23 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `admin-accounts`;
 CREATE TABLE IF NOT EXISTS `admin-accounts` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `adminID` int(255) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
   `dateAdded` date NOT NULL,
   `timeAdded` time NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`adminID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin-accounts`
 --
 
-INSERT INTO `admin-accounts` (`id`, `username`, `password`, `firstname`, `lastname`, `dateAdded`, `timeAdded`) VALUES
-(1, 'admin', 'admin', 'William Cris', 'Hod', '2022-01-15', '14:08:29');
+INSERT INTO `admin-accounts` (`adminID`, `username`, `password`, `firstname`, `lastname`, `position`, `dateAdded`, `timeAdded`) VALUES
+(1, 'admin', '$2y$10$Lxj113ZKQqe4VUFvDC40KOnNjZuMk5Iuz2JPQplpF4yPrVKmVK4A6', 'William Cris', 'Hod', 'Admin', '2022-01-18', '02:44:13');
 
 -- --------------------------------------------------------
 
