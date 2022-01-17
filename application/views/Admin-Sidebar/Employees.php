@@ -12,7 +12,7 @@
   		<button class="add-employee" data-bs-toggle="modal" data-bs-target="#addEmployeeModal" id="addEmployee">Add
   			Employee</button>
   		<!-- TABLE -->
-  		<div class="container">
+  		<div class="">
   			<div class="row">
   				<div class="col-md-12">
   					<h4>List of Employees</h4>
