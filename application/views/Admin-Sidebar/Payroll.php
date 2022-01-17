@@ -1,4 +1,5 @@
 <?php $this->load->view("AdminSidebar") ?>
+<head> 
 <title>Generate Payroll</title>
 <link href=<?php echo base_url("")?> rel="stylesheet">
 </head>

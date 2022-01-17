@@ -45,12 +45,7 @@ table.table tr th, table.table tr td {
 	padding: 12px 15px;
 	vertical-align: middle;
 }
-table.table tr th:first-child {
-	width: 60px;
-}
-table.table tr th:last-child {
-	width: 100px;
-}
+
 table.table-striped tbody tr:nth-of-type(odd) {
 	background-color: #fcfcfc;
 }
@@ -65,7 +60,7 @@ table.table th i {
 table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 22px;
-	margin: 0 5px;
+	margin: 0 3px;
 }
 
 table.table td a:hover {

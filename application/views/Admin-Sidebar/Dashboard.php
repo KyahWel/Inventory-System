@@ -24,9 +24,9 @@
 	const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
 		"November", "December"
 	];
-
-	var x = new Date()
 	var month = monthNames[x.getMonth()];
+	var x = new Date()
+	
 	var day = x.getDate();
 	var year = x.getFullYear();
 	var minute = x.getMinutes()

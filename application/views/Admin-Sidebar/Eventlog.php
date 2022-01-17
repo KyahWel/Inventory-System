@@ -1,4 +1,6 @@
 <?php $this->load->view("AdminSidebar") ?>
+
+<head>
 <title>Eventlog</title>
 <link href="<?php echo base_url('assets/css/event.css'); ?>" rel="stylesheet" type="text/css">
 </head>
