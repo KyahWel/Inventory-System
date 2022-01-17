@@ -1,0 +1,26 @@
+
+/*Event Table*/
+.table-wrapper {
+    background: white;
+    border: 0.1px solid #999;
+}
+
+.table-title {
+    background-color: #1A2226;
+    color: white;
+    text-align: center;
+}
+
+.table-title h2 {
+    font-size: inherit;
+    margin: 15px;
+}
+
+#table-body thead {
+    text-align: center;
+}
+
+#table-body tbody {
+    text-align: center;
+}
+

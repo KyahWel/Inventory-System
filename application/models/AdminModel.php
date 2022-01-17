@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Admin extends CI_Model {
+class AdminModel extends CI_Model {
 
 	public function __construct(){	
 		$this->load->database();
@@ -8,7 +8,7 @@ class Admin extends CI_Model {
 
 	public function insertData() #Create
 	{	
-	
+		date_default_timezone_set('Asia/Manila');
 		$this->db->select('*');
 		$this->db->from('admin-accounts');
 		$this->db->where('username',$_POST['username']);
@@ -18,28 +18,29 @@ class Admin extends CI_Model {
 				'adminID' => NULL,
 				'username' => $_POST['username'],
 				'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
+				'position' => $_POST['position'],
 				'firstname' => $_POST['firstname'],
 				'lastname' => $_POST['lastname'],
+				'dateAdded' => date("Y/m/d"),
+				'timeAdded' => date("H:i:s")
 			);
 			$this->db->insert('admin-accounts',$data);
 			unset($_POST);
-			$this->session->set_flashdata('successAdmin','Added admin account successfully'); 
-			redirect('Admin/dashboard');	
 		}else{
 			$this->session->set_flashdata('adminError','User already exists'); 
-			redirect('Admin/dashboard');
+			redirect('Admin/Dashboard');
 		}
 	}
 
 	public function viewData() #Read
 	{
-		$query = $this->db->query('SELECT * FROM admin-accounts');
+		$query = $this->db->query('SELECT * FROM `admin-accounts`');
 		return $query->result();
 	}
 
 	public function getData($id) #Edit
 	{
-		$query = $this->db->query('SELECT * FROM admin-accounts WHERE `adminID` ='.$id) ;
+		$query = $this->db->query('SELECT * FROM `admin-accounts` WHERE `adminID` ='.$id) ;
 		return $query->row();
 	}
 
@@ -62,18 +63,17 @@ class Admin extends CI_Model {
 	public function login(){
 		$data = array(
 			'username' => $_POST['username'],
-            'password' => $_POST['password'],
 		);
 		$this->db->select('*');
 		$this->db->from('admin-accounts');
 		$this->db->where($data);
 		$query=$this->db->get();
 		if($query->num_rows()!=0){	
-			return $query->row();
-			// if(password_verify($_POST['password'],$row->password))
-			// 	return $query->row();
-			// else
-			// 	return NULL;
+			$row = $query->row();
+			if(password_verify($_POST['password'],$row->password))
+				return $query->row();
+			else
+				return NULL;
 		}	
 		else 
 			return NULL;

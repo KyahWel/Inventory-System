@@ -7,6 +7,7 @@ class Admin extends CI_Controller{
 		parent::__construct();
 		$this->load->model('Authentication');
 		$this->load->model('Employee');
+		$this->load->model('AdminModel');
 	}
 	
 	public function Dashboard()
@@ -17,9 +18,10 @@ class Admin extends CI_Controller{
 	}
 
 	public function Admin()
-	{
+	{	
+		$data['admin'] = $this->AdminModel->viewData();
 		$this->load->view('Header');
-		$this->load->view('Admin-Sidebar/Admin');
+		$this->load->view('Admin-Sidebar/Admin',$data);
 		$this->load->view('Footer');
 	}
 
