@@ -32,13 +32,15 @@
 
 
   								<tr>
-  									<td><?php echo $row->employeeNumber?></td>
+  									<td> <a class="view_employee" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
+  											data-bs-toggle="modal" data-bs-target="#viewEmployeeModal"> <?php echo $row->employeeNumber?>
+  										</a></td>
   									<td><?php echo $row->firstname?></td>
   									<td><?php echo $row->lastname?></td>
   									<td><?php echo $row->position?></td>
   									<td>
-  										<button class="view_employee" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
-  											data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">View</button>
+  										<button id="editEmployee" class="edit_employee" data-id="<?php echo $row->employeeID?>"
+  											data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</button>
   										<button id="deleteEmployee"
   											onclick="location.href='<?php echo site_url('EmployeeFunctions/deleteEmployee')?>/<?php echo $row->employeeID; ?>'">Delete</button>
   									</td>
@@ -51,12 +53,12 @@
   				</div>
   			</div>
   		</div>
-  		<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="viewAnnouncementHeader"
+  		<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addAnnouncementHeader"
   			aria-hidden="true">
   			<div class="modal-dialog modal-lg modal-dialog-centered">
   				<div class="modal-content">
   					<div class="modal-header">
-  						<h5 class="modal-title" id="viewAnnouncementHeader">Add Employee</h5>
+  						<h5 class="modal-title" id="addAnnouncementHeader">Add Employee</h5>
   						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
   							aria-label="Close"></button>
   					</div>
@@ -65,14 +67,14 @@
   							<p>First Name: <br><input type="text" required name="firstname"></p>
   							<p>Last Name: <br><input type="text" required name="lastname"></p>
   							<p>Age: <br><input type="text" required name="age"></p>
-                <p>Address: <br><input type="text" required name="address"></p>
+  							<p>Address: <br><input type="text" required name="address"></p>
   							<p>Position:
   								<select name="position" required id="position">
   									<option value="" selected disabled hidden>Select Position</option>
-  									<option value="driver">Driver</option>
-  									<option value="helper">Helper</option>
-  									<option value="machineOperator">Machine Operator</option>
-  									<option value="secretary">Secretary</option>
+  									<option value="Driver">Driver</option>
+  									<option value="Helper">Helper</option>
+  									<option value="Machine Operator">Machine Operator</option>
+  									<option value="Secretary">Secretary</option>
   								</select>
   							</p>
   							<p>SSS Number: <br><input type="text" required name="sss-number"></p>
@@ -85,6 +87,24 @@
   								<button type="cancel" value="submit" data-bs-dismiss="modal">Cancel</button>
   							</div>
   						</form>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+
+  		<div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editAnnouncementHeader"
+  			aria-hidden="true">
+  			<div class="modal-dialog modal-lg modal-dialog-centered">
+  				<div class="modal-content">
+  					<div class="modal-header">
+  						<h5 class="modal-title" id="editAnnouncementHeader">Edit Employee</h5>
+  						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+  							aria-label="Close"></button>
+  					</div>
+  					<div class="modal-body">
+  						<div id="edit_employee">
+                  
+  						</div>
   					</div>
   				</div>
   			</div>
@@ -131,6 +151,22 @@
   				success: function (data) {
   					$('#view_employee').html(data);
   					console.log(employeeData);
+  				}
+  			});
+  		});
+
+  		$('.edit_employee').click(function () {
+  			var employeeData = $(this).data('id');
+        console.log(employeeData);
+  			$.ajax({
+  				url: "<?php echo site_url('EmployeeFunctions/edit_Employee');?>",
+  				method: "POST",
+  				data: {
+  					employeeData: employeeData
+  				},
+  				success: function (data) {
+  					$('#edit_employee').html(data);
+  					// console.log(employeeData);
   				}
   			});
   		});

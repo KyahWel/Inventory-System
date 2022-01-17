@@ -54,6 +54,7 @@ class Employee extends CI_Model {
 			'firstname' => $_POST['firstname'],
 			'lastname' => $_POST['lastname'],
 			'age' => $_POST['age'],
+			'address' => $_POST['address'],
 			'position' => $_POST['position']
 		);
 		$this->db->where('employeeID',$id);

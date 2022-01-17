@@ -101,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</a>
 						</li>
 						<li class="sidebar">
-							<a href="<?php echo base_url('Logot'); ?>">
+							<a href="<?php echo base_url('Logout'); ?>">
 								<i class="fa fa-sign-out-alt"></i>
 								<span>Logout</span>
 							</a>
