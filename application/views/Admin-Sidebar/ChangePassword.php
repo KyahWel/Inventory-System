@@ -7,10 +7,11 @@
  <div class="container">
     <!-- Error Message -->
  </div>
- <div class="container col-9">
-    <h3>This is ChangePassword Tab</h3> <br>
-   
-</div> 
+ <main class="page-content">
+    <div class="container">
+      <h3>This is ChangePassword Tab</h3> <br>
+    </div>
+</main> 
 
  
     

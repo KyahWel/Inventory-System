@@ -23,6 +23,7 @@ class Employee extends CI_Model {
 			'firstname' => $_POST['firstname'],
 			'lastname' => $_POST['lastname'],
 			'age' => $_POST['age'],
+			'address' => $_POST['address'],
 			'position' => $_POST['position'],
 			'sss_number' => $_POST['sss-number'],
 			'pagibig_number' => $_POST['pagibig-number'],

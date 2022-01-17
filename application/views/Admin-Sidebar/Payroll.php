@@ -1,14 +1,10 @@
 <?php $this->load->view("AdminSidebar") ?>
-    <title>Generate Payroll</title>
-    <link href=<?php echo base_url("")?> rel="stylesheet">
-  </head>
+<title>Generate Payroll</title>
+<link href=<?php echo base_url("")?> rel="stylesheet">
+</head>
 
-  <body>
- 
- <div class="container col-9">
-    <h3>This is Payroll Tab</h3> <br>
-   
-</div> 
-
- 
-    
+<main class="page-content">
+	<div class="container">
+		<h3>This is Payroll Tab</h3> <br>
+	</div>
+</main>

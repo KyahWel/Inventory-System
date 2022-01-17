@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 16, 2022 at 07:26 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jan 17, 2022 at 11:04 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,153 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin-accounts`
---
-
-CREATE TABLE `admin-accounts` (
-  `id` int(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `dateAdded` date NOT NULL,
-  `timeAdded` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin-accounts`
---
-
-INSERT INTO `admin-accounts` (`id`, `username`, `password`, `firstname`, `lastname`, `dateAdded`, `timeAdded`) VALUES
-(1, 'admin', 'admin', 'William Cris', 'Hod', '2022-01-15', '14:08:29');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `employee-accounts`
 --
 
-CREATE TABLE `employee-accounts` (
-  `employeeID` int(255) NOT NULL,
+DROP TABLE IF EXISTS `employee-accounts`;
+CREATE TABLE IF NOT EXISTS `employee-accounts` (
+  `employeeID` int(255) NOT NULL AUTO_INCREMENT,
   `employeeNumber` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `age` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `position` varchar(255) NOT NULL,
   `sss_number` varchar(255) NOT NULL,
   `pagibig_number` varchar(255) NOT NULL,
   `philhealth_number` varchar(255) NOT NULL,
   `tin_number` varchar(255) NOT NULL,
-  `employmentDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `employmentDate` date NOT NULL,
+  PRIMARY KEY (`employeeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee-accounts`
 --
 
-INSERT INTO `employee-accounts` (`employeeID`, `employeeNumber`, `firstname`, `lastname`, `age`, `position`, `sss_number`, `pagibig_number`, `philhealth_number`, `tin_number`, `employmentDate`) VALUES
-(3, 'Employee-1271', 'omar', 'onse', '11', 'secretary', '111', '222', '333', '444', '2022-01-28');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `employee-payout`
---
-
-CREATE TABLE `employee-payout` (
-  `payoutID` int(255) NOT NULL,
-  `employeeID` int(255) NOT NULL,
-  `date-received` date NOT NULL,
-  `amount` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `event-log`
---
-
-CREATE TABLE `event-log` (
-  `eventID` int(255) NOT NULL,
-  `employeeID` int(255) NOT NULL,
-  `event` varchar(255) NOT NULL,
-  `time-happened` time NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin-accounts`
---
-ALTER TABLE `admin-accounts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `employee-accounts`
---
-ALTER TABLE `employee-accounts`
-  ADD PRIMARY KEY (`employeeID`);
-
---
--- Indexes for table `employee-payout`
---
-ALTER TABLE `employee-payout`
-  ADD PRIMARY KEY (`payoutID`),
-  ADD KEY `employee-payout` (`employeeID`);
-
---
--- Indexes for table `event-log`
---
-ALTER TABLE `event-log`
-  ADD PRIMARY KEY (`eventID`),
-  ADD KEY `employee-log` (`employeeID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin-accounts`
---
-ALTER TABLE `admin-accounts`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `employee-accounts`
---
-ALTER TABLE `employee-accounts`
-  MODIFY `employeeID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `employee-payout`
---
-ALTER TABLE `employee-payout`
-  MODIFY `payoutID` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `event-log`
---
-ALTER TABLE `event-log`
-  MODIFY `eventID` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `employee-payout`
---
-ALTER TABLE `employee-payout`
-  ADD CONSTRAINT `employee-payout` FOREIGN KEY (`employeeID`) REFERENCES `employee-accounts` (`employeeID`);
-
---
--- Constraints for table `event-log`
---
-ALTER TABLE `event-log`
-  ADD CONSTRAINT `employee-log` FOREIGN KEY (`employeeID`) REFERENCES `employee-accounts` (`employeeID`);
+INSERT INTO `employee-accounts` (`employeeID`, `employeeNumber`, `firstname`, `lastname`, `age`, `address`, `position`, `sss_number`, `pagibig_number`, `philhealth_number`, `tin_number`, `employmentDate`) VALUES
+(1, 'Employee-8667', 'William Cris', 'Hod', '20', '', 'driver', '132', '123', '123', '123', '2022-01-27');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

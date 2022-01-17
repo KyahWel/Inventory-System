@@ -24,6 +24,7 @@ class EmployeeFunctions extends CI_Controller {
 				<p>First Name: '.$records->firstname.'</p>
                 <p>Last Name: '.$records->lastname.'</p>
                 <p>Age: '.$records->age.'</p>
+				<p>Address: '.$records->address.'</p>
                 <p>Position: '.$records->position.'</p>
                 <p>SSS Number: '.$records->sss_number.'</p>
                 <p>Pag-IBIG Number: '.$records->pagibig_number.'</p>

@@ -26,7 +26,7 @@ class Admin extends CI_Controller{
 	public function Employee()
 	{
 		$data['employee'] = $this->Employee->viewData();
-		$this->load->view('Header');
+		$this->load->view("AdminSidebar");
 		$this->load->view('Admin-Sidebar/Employees', $data);
 		$this->load->view('Footer');
 	}
