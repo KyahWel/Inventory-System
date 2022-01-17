@@ -5,7 +5,6 @@
 
 <<main class="page-content">
 	<div class="container">
-
 		<h3 class="fw-bold">Events Log</h3> <br>
 		<!--Event Table-->
 		<div class="col-12 align-self-center" id="EventTable">

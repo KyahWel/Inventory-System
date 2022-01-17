@@ -1,3 +1,4 @@
+<?php $this->load->view("AdminSidebar") ?>
   <head>
   	<title>Employees</title>
   	<link href=<?php echo base_url("assets/css/sidebar.css")?> rel="stylesheet">
@@ -129,7 +130,6 @@
   		</div>
   	</div>
   </main>
-
   <script src=<?php echo base_url("assets/js/bootstrap.bundle.min.js")?>></script>
   <!-- jQuery JS CDN -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
