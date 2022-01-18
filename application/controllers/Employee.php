@@ -6,7 +6,7 @@ class Employee extends CI_Controller{
 	public function index()
 	{
 		$this->load->view('Header');
-		$this->load->view('Employee');
+		$this->load->view('Attendance');
 		$this->load->view('Footer');
 	}
 }

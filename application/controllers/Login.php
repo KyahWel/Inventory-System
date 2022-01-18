@@ -5,10 +5,10 @@ class Login extends CI_Controller{
 
 	public function __construct() {
         parent:: __construct();
-        $this->load->model('Admin');
+        $this->load->model('AdminModel');
 		if ($this->session->has_userdata('authenticated')){
 			$this->session->set_flashdata('logout','Please logout first'); 
-			redirect('Admin');
+			redirect('Admin/Dashboard');
 		}
     }
 
@@ -20,7 +20,7 @@ class Login extends CI_Controller{
 	}
 
 	public function admin_login(){
-		$data = $this->Admin->login();
+		$data = $this->AdminModel->login();
 			if($data != NULL){ 
 				$auth_userdetails = [
 					'adminID' => $data->adminID,
@@ -34,7 +34,7 @@ class Login extends CI_Controller{
 				$this->session->set_userdata('auth_user',$auth_userdetails);
 				$this->session->set_userdata('authenticated',"1");
 				$this->session->set_flashdata('success','Login Succesfully');
-				redirect('Admin');
+				redirect('Admin/Dashboard');
 			}
 			else{
 				$this->session->set_flashdata('loginerror','Invalid Username or Password'); 
