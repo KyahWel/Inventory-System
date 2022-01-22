@@ -14,7 +14,7 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>List of <b>Employees</b></h2>
+						<h2>List of Employees</h2>
 					</div>
 					<div class="col-sm-6">
 						<button class="add-employee btn btn-success" data-bs-toggle="modal"
