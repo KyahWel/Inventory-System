@@ -5,7 +5,7 @@
 </head>
 
 <main class="page-content">
-	<div class="container">
+	<div style="margin-left: 22%; width: 75%;">
 		<h3>This is Payroll Tab</h3> <br>
 	</div>
 </main>

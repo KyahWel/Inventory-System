@@ -86,11 +86,6 @@
     left: 0px;
   }
   
-  @media screen and (min-width: 768px) {
-    .page-wrapper.toggled .page-content {
-      padding-left: 300px;
-    }
-  }
   /*----------------show sidebar button----------------*/
   #show-sidebar {
     position: fixed;
@@ -100,9 +95,7 @@
     width: 35px;
     transition-delay: 0.3s;
   }
-  .page-wrapper.toggled #show-sidebar {
-    left: -40px;
-  }
+  
   /*----------------sidebar-wrapper----------------*/
   
   .sidebar-wrapper {

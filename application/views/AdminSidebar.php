@@ -13,16 +13,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
 	<div class="page-wrapper chiller-theme toggled">
-		<button id="show-sidebar" class="btn btn-sm btn-dark">
-			<i class="fas fa-bars"></i>
-		</button>
-		<nav id="sidebar" class="sidebar-wrapper">
+		
+		<nav  class="sidebar-wrapper">
 			<div class="sidebar-content">
 				<div class="sidebar-brand">
 					<a href="#"></a>
-					<div id="close-sidebar">
-						<i class="fas fa-times"></i>
-					</div>
 				</div>
 				<div class="sidebar-header">
 					<div class="user-pic">
