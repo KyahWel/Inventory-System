@@ -6,7 +6,7 @@
 
 </head>
 <main class="page-content">
-	<div style="margin-left: 22%; width: 75%;">
+	<div style="margin-left: 20vw; width: 78.5vw;">
 		<div class="">
 			<div class="table-title">
 				<div class="row">

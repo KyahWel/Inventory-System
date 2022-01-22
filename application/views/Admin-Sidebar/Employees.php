@@ -10,7 +10,7 @@
 <main class="page-content">
 	<div>
 		<!-- TABLE -->
-		<div style="margin-left: 22%; width: 75%;">
+		<div style="margin-left: 20vw; width: 73.5vw;">
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">

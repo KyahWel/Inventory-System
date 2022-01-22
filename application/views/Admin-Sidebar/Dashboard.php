@@ -49,11 +49,12 @@
 			</div>
 		</div>
 		<div class="p-3  d-flex flex-row">
-			<div class="container bg-white mx-1 p-3 d-flex flex-column">
+			<div class="container bg-white mx-1 p-3 d-flex flex-column rounded">
 				<h2>Monthly breakdown of expenses:</h2>
+				<br>
 				<canvas id="chart"></canvas>
 			</div>
-			<div class="container bg-white mx-1 p-2 w-50 d-flex flex-column">
+			<div class="container bg-white mx-1 p-2 w-50 d-flex flex-column rounded">
 				<h3>Employees</h3>
 			</div>
 		</div>

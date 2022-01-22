@@ -4,7 +4,7 @@
   </head>
 
 <main class="page-content">
-    <div class="profile-container">
+    <div class="profile-container" style="margin-left: 20vw; width: 78.5vw;">
         <div class="col-12 title">
                 <h3>My Profile</h3>
         </div>
