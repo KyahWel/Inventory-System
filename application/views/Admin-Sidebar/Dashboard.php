@@ -4,58 +4,71 @@
 </head>
 
 <main class="mt-5">
-	<div class="main-div bg-dark rounded">
-		<div class="pt-3 px-3 d-flex flex-row  ">
-			<div class="container bg-white mx-1 p-2 d-flex flex-column rounded">
-				<div class="row align-items-center">
-					<div class="col-8">
-						<h2 class="price">P 36,000 </h2>
-						<h6 class="">SSS <br> Contribution </h6>
-					</div>
-					<div class="col-4 text-right ">
-						<i class="fas fa-money-check fa-3x"></i>
-					</div>
-				</div>
-			</div>
-			<div class="container bg-white mx-1 p-2 d-flex flex-column rounded">
-				<div class="row align-items-center">
-					<div class="col-8">
-						<h2 class="price">P 45,000 </h2>
-						<h6 class="">Pag-Ibig Contribution</h6>
-					</div>
-					<div class="col-4 text-right ">
-						<i class="fas fa-home fa-3x"></i>
+
+	<div class="main-div rounded">
+		<div class="container mx-2 bootstrap snippet">
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="circle-tile ">
+						<div class="circle-tile-heading header-bg"><i class="fa fa-users fa-fw fa-3x"></i></div>
+						<div class="circle-tile-content dark-blue">
+							<div class="circle-tile-description text-faded">Total Employees</div>
+							<div class="circle-tile-number text-faded ">265</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="container bg-white mx-1 p-2 d-flex flex-column rounded">
-				<div class="row align-items-center">
-					<div class="col-8">
-						<h2 class="price">P 40,000 </h2>
-						<h6 class="">PhilHealth Contribution</h6>
-					</div>
-					<div class="col-4 text-right ">
-						<i class="fas fa-medkit fa-3x"></i>
+				<div class="col-lg-3 col-sm-6">
+					<div class="circle-tile ">
+						<div class="circle-tile-heading header-bg">
+							<img aria-hidden="true" class="w-75 mt-3"
+								src="<?php echo base_url("assets/images/sss.png")?>" alt="SSS Logo">
+						</div>
+						<div class="circle-tile-content dark-blue">
+							<div class="circle-tile-description text-faded"> SSS Contribution</div>
+							<div class="circle-tile-number text-faded ">PHP 30,000</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="container bg-white mx-1 p-2 d-flex flex-column rounded">
-				<div class="row align-items-center">
-					<div class=" text-center">
-						<h4 class=""> <b>Total Expenses</b></h4>
-						<h2 class=""> P 40,000  </h2>
+				<div class="col-lg-3 col-sm-6">
+					<div class="circle-tile ">
+						<div class="circle-tile-heading header-bg">
+							<img src="<?php echo base_url("assets/images/phl.png")?>" alt="SSS Logo">
+						</div>
+						<div class="circle-tile-content dark-blue">
+							<div class="circle-tile-description text-faded">Philhealth Contribution</div>
+							<div class="circle-tile-number text-faded ">265</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="circle-tile ">
+						<div class="circle-tile-heading header-bg"><img class="w-75 mt-1"
+								src="<?php echo base_url("assets/images/pg.png")?>" alt="SSS Logo"></div>
+						<div class="circle-tile-content dark-blue">
+							<div class="circle-tile-description text-faded">Pag Ibig Contribution</div>
+							<div class="circle-tile-number text-faded ">265</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<div class="p-3  d-flex flex-row">
-			<div class="container bg-white mx-1 p-3 d-flex flex-column rounded">
-				<h2>Monthly breakdown of expenses:</h2>
+			<div class="container mx-1 p-3 d-flex flex-column border dark-blue border-dark rounded shadow">
+				<h4 style="font-family:'Century Gothic';" class="text-faded">MONTHLY BREAKDOWN OF EXPENSES:</h4>
 				<br>
 				<canvas id="chart"></canvas>
 			</div>
-			<div class="container bg-white mx-1 p-2 w-50 d-flex flex-column rounded">
-				<h3>Employees</h3>
+			<div class="container bg-white w-75 d-flex mx-1 py-2 border border-dark  flex-column rounded">
+				<div class="border border-dark d-flex flex-row ">
+					<div class="border border-dark col-6 text-center">
+						<span class="dot-active"> </span>
+						<h6>[Time In]</h6>
+					</div>
+					<div class="border border-dark col-7 text-center">
+						<h6>William Cris Hod</h6>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -64,37 +77,47 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 <script>
-      const ctx = document.getElementById("chart").getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-		"November", "December"],
-          datasets: [{
-            label: 'SSS',
-            backgroundColor: 'rgba(255, 0, 0, 0.3)',
-            data: [3000, 4000, 2000, 5000, 8000, 9000, 2000,2000, 5000, 8000, 9000, 2000],
-          },
-		  {
-            label: 'Philhealth',
-            backgroundColor: 'rgba(0, 255, 0, 0.3)',
-            data: [1000, 2000, 6000, 4000, 6000, 9000, 3000,3500, 6000, 5000, 7000, 4000],
-          },
-		  {
-            label: 'PagIbig',
-            backgroundColor: 'rgba(0, 0, 255, 0.3)',
-            data: [2000, 3000, 4000, 6000, 4000, 9000, 3000,3500, 6000, 5000, 7000, 4000],
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-              }
-            }]
-          }
-        },
-      });
-</script>
+	Chart.defaults.global.defaultFontColor = 'white';
+	const ctx = document.getElementById("chart").getContext('2d');
+	const myChart = new Chart(ctx, {
+		type: 'line',
+		options: {
+			responsive: false,
+		},
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+				"October",
+				"November", "December"
+			],
+			datasets: [{
+					label: 'SSS',
+					backgroundColor: 'transparent',
+					borderColor: 'rgba(255,99,132,1)',
+					data: [3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
+				},
+				{
+					label: 'Philhealth',
+					backgroundColor: 'transparent',
+					borderColor: 'rgba(54, 162, 235, 1)',
+					data: [1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
+				},
+				{
+					label: 'PagIbig',
+					backgroundColor: 'transparent',
+					borderColor: 'rgba(255, 206, 86, 1)',
+					data: [2000, 3000, 4000, 6000, 4000, 8000, 3000, 3500, 6000, 5000, 7000, 4000],
+				}
+			]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+					}
+				}]
+			}
+		},
+	});
 
+</script>
