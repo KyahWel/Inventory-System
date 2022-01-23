@@ -7,6 +7,7 @@ class EmployeeFunctions extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Employee');
+		$this->load->model('EmployeeAttendance');
 	}
 
 	public function addEmployee()
@@ -119,4 +120,19 @@ class EmployeeFunctions extends CI_Controller {
 	{	
 		$this->EmployeeModel->changePassword($id);
 	}
+
+	
+	public function timeIn(){
+		$employeeData = $this->input->post('employeeNumber');
+		$this->EmployeeAttendance->timeIn($employeeData);
+		redirect('Employee');
+	}
+
+	public function timeOut(){
+		$employeeData = $this->input->post('employeeNumber');
+		$this->EmployeeAttendance->timeOut($employeeData);
+		redirect('Employee');
+	}
 }
+
+

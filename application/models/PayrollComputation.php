@@ -6,17 +6,30 @@ class PayrollComputation extends CI_Model {
 		parent::__construct();
 		
 	}
-	public function computeGrossIncome($timeIn, $timeOut){
-		$ratePerDay = 537;
-		$late = date_diff(date_create($timeIn), date_create('8:00:00'));
-		$overtime = date_diff(date_create($timeOut), date_create('16:00:00'));
-		$lateRate = $late->h * 67.13;
-		$overtimeRate = $overtime->h * 83.91;
 
-		// $test = (object)[
-		// 	'late' => $lateRate,
-		// 	'overtime' => $overtimeRate
-		// ];
-		// return $test;
+	public function computeOTRate ($timeOut){
+		$overtime = date_diff(date_create($timeOut), date_create('16:00:00'));
+		$overtimeRate = $overtime->h * 83.91;
+		return $overtimeRate;
 	}
+
+	public function computeLateRate ($timeIn){
+		
+		$late = date_diff(date_create($timeIn), date_create('8:00:00'));
+		$lateRate =  ($late->m/15) * 16.825;
+		return $lateRate;
+	}
+
+	public function incomePerDay($overtimeRate, $lateRate){
+		return (537+$overtimeRate)-$lateRate;
+	}
+
+	public function deduction(){
+		
+	}
+
+	public function weeklyIncome($grossSalary, $deduction){
+		return $grossSalary-$deduction;
+	}
+
 }

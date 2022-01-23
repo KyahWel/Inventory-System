@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 17, 2022 at 06:47 PM
+-- Generation Time: Jan 23, 2022 at 06:35 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -96,18 +96,43 @@ CREATE TABLE IF NOT EXISTS `employee-payout` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employeeattendance`
+--
+
+DROP TABLE IF EXISTS `employeeattendance`;
+CREATE TABLE IF NOT EXISTS `employeeattendance` (
+  `employeeAttendanceID` int(255) NOT NULL AUTO_INCREMENT,
+  `employeeID` int(255) NOT NULL,
+  `timeIn` time DEFAULT NULL,
+  `timeOut` time DEFAULT NULL,
+  `dateLogged` date NOT NULL,
+  `day` varchar(255) NOT NULL,
+  PRIMARY KEY (`employeeAttendanceID`),
+  KEY `employee` (`employeeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employeeattendance`
+--
+
+INSERT INTO `employeeattendance` (`employeeAttendanceID`, `employeeID`, `timeIn`, `timeOut`, `dateLogged`, `day`) VALUES
+(1, 1, '02:23:10', '02:30:14', '2022-01-24', 'Monday');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `event-log`
 --
 
 DROP TABLE IF EXISTS `event-log`;
 CREATE TABLE IF NOT EXISTS `event-log` (
   `eventID` int(255) NOT NULL AUTO_INCREMENT,
-  `employeeID` int(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
   `event` varchar(255) NOT NULL,
   `time-happened` time NOT NULL,
   `date` date NOT NULL,
-  PRIMARY KEY (`eventID`),
-  KEY `employee-log` (`employeeID`)
+  `day` varchar(255) NOT NULL,
+  PRIMARY KEY (`eventID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -121,10 +146,10 @@ ALTER TABLE `employee-payout`
   ADD CONSTRAINT `employee-payout` FOREIGN KEY (`employeeID`) REFERENCES `employee-accounts` (`employeeID`);
 
 --
--- Constraints for table `event-log`
+-- Constraints for table `employeeattendance`
 --
-ALTER TABLE `event-log`
-  ADD CONSTRAINT `employee-log` FOREIGN KEY (`employeeID`) REFERENCES `employee-accounts` (`employeeID`);
+ALTER TABLE `employeeattendance`
+  ADD CONSTRAINT `employee` FOREIGN KEY (`employeeID`) REFERENCES `employee-accounts` (`employeeID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
