@@ -11,9 +11,10 @@
 .container{
     box-shadow: 0 1px 3px 3px #9a9b9d;
     height: 30rem;
-    background: -webkit-linear-gradient(#141e30eb, #1a2226f5);
+    background: -webkit-linear-gradient(#141E30, #1A2226);
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px!important;
+    border-color: #212529!important;
 }
 
 .profile-box{
