@@ -24,8 +24,8 @@ class PayrollComputation extends CI_Model {
 		return (537+$overtimeRate)-$lateRate;
 	}
 
-	public function deduction(){
-		
+	public function SSSPagibigDeduction($deduction,$present_days){
+		return ((float)($deduction/27))*$present_days;
 	}
 
 	public function weeklyIncome($grossSalary, $deduction){

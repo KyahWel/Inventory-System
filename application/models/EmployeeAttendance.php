@@ -54,9 +54,10 @@ class EmployeeAttendance extends CI_Model {
 			);
 			$query = $this->db->query('	SELECT * FROM employeeattendance 
 										WHERE employeeID ='.$row->employeeID.' AND `timeOut` IS NULL AND dateLogged ="'.date("Y-m-d").'"');
-			if($query->num_rows() > 0){
-				$this->db->update('employeeattendance',$data);
+			if($query->num_rows() > 0){	
 				$this->db->where('employeeID',$row->employeeID);
+				$this->db->where('dateLogged',strval(date("Y-m-d")));
+				$this->db->update('employeeattendance',$data);
 				$this->session->set_flashdata('timeOutSuccess','Time Out recorded successfully');
 			}
 			else{

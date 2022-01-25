@@ -11,9 +11,10 @@ class Admin extends CI_Controller{
 	}
 	
 	public function Dashboard()
-	{
+	{	
+		$data['employee'] = $this->Employee->countEmployee();
 		$this->load->view('Header');
-		$this->load->view('Admin-Sidebar/Dashboard');
+		$this->load->view('Admin-Sidebar/Dashboard',$data);
 		$this->load->view('Footer');
 	}
 
