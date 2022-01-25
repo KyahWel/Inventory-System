@@ -56,32 +56,74 @@
 		<div class="p-3  d-flex flex-row">
 			<div class="mx-1 d-flex flex-column p-3 border dark-blue border-dark rounded shadow">
 				<h4 style="font-family:'Century Gothic';" class="text-faded">MONTHLY BREAKDOWN OF EXPENSES:</h4>
-				<canvas id="chart" height="350" width="990"></canvas>
+				<canvas id="chart" height="350" width="1260"></canvas>
 			</div>
-			
+
 		</div>
 
-		<div class="p-3  d-flex flex-row">
-			<div class="container bg-white d-flex mx-1 py-2 border border-dark flex-row rounded">
-				<div class="container border border-dark d-flex flex-row ">
-					<div class="border border-dark flex-col-10 text-center">
-						<span class="dot-active"> </span>
-						<h6>[Time In]</h6>
-					</div>
-					<div class="border border-dark flex-col-8 text-center">
-						<h6>William Cris Hod</h6>
-					</div>
+		<div class="p-3 d-flex flex-row">
+			<div class="container bg-white d-flex mx-1 py-2 border dark-blue border-dark flex-row rounded">
+				<div class="container">
+					<div class="text-center text-faded"><h4><?php echo date("F d, Y")?></h4><br></div>
+					<table class="table table-borderless" id="employeeTable">
+						<thead class="text-center text-faded">
+							<tr>
+								<th>
+									<h4 style="font-family:'Century Gothic';" class="text-faded">EMPLOYEE</h4>
+								</th>
+								<th>
+									<h4 style="font-family:'Century Gothic';" class="text-faded">POSITION</h4>
+								</th>
+								<th>
+									<h4 style="font-family:'Century Gothic';" class="text-faded">ACTION</h4>
+								</th>
+							</tr>
+						</thead>
+						<tbody class="text-center" style="color: white; font-size: 1.2rem">
+
+							<tr>
+								<td>
+									<p>William Hod</p>
+								</td>
+								<td>
+									<p>Driver</p>
+								</td>
+								<td>
+									<div class="d-inline-flex align-items-center active">
+										<div class="circle"></div>
+										<div class="ps-2">Time In</div>
+									</div>
+									8:00
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Angelo Edrosa</p>
+								</td>
+								<td>
+									<p>Helper</p>
+								</td>
+								<td>
+									<div class="d-inline-flex align-items-center inactive">
+										<div class="circle"></div>
+										<div class="ps-2">Time Out</div>
+									</div>
+									15:00
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 			<div class=" p-3 d-flex flex-column border dark-blue border-dark rounded shadow">
 				<h4 style="font-family:'Century Gothic';" class="text-faded">EXPENSES FOR MONTH OF
 					<?php echo strtoupper(date('F'))?></h4>
 				<br>
-				<canvas id="month-chart" height="70"  width="120" ></canvas>
+				<canvas id="month-chart" height="70" width="120"></canvas>
 			</div>
-			
+
 		</div>
-		
+
 	</div>
 	<br>
 </main>
@@ -104,19 +146,19 @@
 			],
 			datasets: [{
 					label: 'SSS',
-					
+
 					borderColor: 'rgba(255,99,132,1)',
 					data: [3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
 				},
 				{
 					label: 'Philhealth',
-				
+
 					borderColor: 'rgba(54, 162, 235, 1)',
 					data: [1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
 				},
 				{
 					label: 'PagIbig',
-				
+
 					borderColor: 'rgba(255, 206, 86, 1)',
 					data: [2000, 3000, 4000, 6000, 4000, 8000, 5000, 4500, 7000, 6000, 8000, 5000],
 				}
@@ -146,19 +188,19 @@
 			],
 			datasets: [{
 					label: 'SSS',
-					
+
 					borderColor: 'rgba(255,99,132,1)',
 					data: [3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
 				},
 				{
 					label: 'Philhealth',
-				
+
 					borderColor: 'rgba(54, 162, 235, 1)',
 					data: [1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
 				},
 				{
 					label: 'PagIbig',
-				
+
 					borderColor: 'rgba(255, 206, 86, 1)',
 					data: [2000, 3000, 4000, 6000, 4000, 8000, 5000, 4500, 7000, 6000, 8000, 5000],
 				}
@@ -174,4 +216,5 @@
 			}
 		},
 	});
+
 </script>

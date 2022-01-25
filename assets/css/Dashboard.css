@@ -85,4 +85,41 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* TABLE */
+
+.table tbody td .active,
+.table tbody td .inactive {
+    background-color: #B9F6CA;
+    color: #388E3C;
+    font-weight: 600;
+    padding: 1px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem
+}
+
+.table tbody td .inactive {
+    background-color: #ffb3b3;
+    color: #ff0000
+}
+
+.table tbody td .active .circle,
+.table tbody td .inactive .circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #388E3C
+}
+
+.table tbody td .inactive .circle {
+    background-color: #ff0000
+}
+
+
+table {
+  border-collapse: collapse;
+}
+#employeeTable {
+  table-layout: fixed;
+  width: 65rem;
+}
 
