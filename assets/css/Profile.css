@@ -1,64 +1,54 @@
-.profile-container{
-    display: flex;
-    flex-direction: column;
-    margin: -20px -25px 10px;
+.form-control:focus {
+    box-shadow: none;
+    border-color: #6a7e99
 }
-.title{
-    z-index: -1;
+
+.labels {
+    font-size: 1.1rem;
+    font-weight: 400;
 }
-.row{
-    justify-content: center;
-    padding: 20px 0;
-    border: 1px solid #4950579c;
-    margin: 10px 20px;
-    box-shadow: 1px 1px 5px #888888;
+
+.container{
+    box-shadow: 0 1px 3px 3px #9a9b9d;
+    height: 30rem;
+    background: -webkit-linear-gradient(#141e30eb, #1a2226f5);
+    color: #fff;
     border-radius: 5px;
 }
 
-.title{
-    font-size: 26px;
-    font-weight: 500;
-    background-color: #1e2229;
+.profile-box{
+    box-shadow: 0 0px 1px 1px #888;
+    background: -webkit-linear-gradient(#ffffffeb, rgb(213 211 211 / 20%));
+    margin-top: 2rem;
+    border-radius: 5px;
 }
 
-.photoCont{ 
-    text-align: center;
-    padding-bottom: 25px;
+.border-right{
+    height: 30rem;
 }
 
-.profile-infoCont{  
-    display: inline-flex;
-    padding: 30px 10px;
-    justify-content: center;
-    align-items: center;
-    background-color: #1e2229;
-    border-radius: 15px;
+.profile-settings{
+    border-bottom: 1px solid rgb(167, 164, 164);
+    font-size: 1.5rem;
 }
 
-.profile-inputCont{
-    justify-content: center;
-    color: #ffff;
-    display: inline-block;
+.settings{
+    font-size: 1.6rem;
 }
 
-.profile-input{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    font-size: 17px;
-    font-weight: 500;
-    padding: 0 15px;
+.profile-name{
+    font-size: 1.3rem;
+}
+
+.profile-username{
+    font-size: 1.1rem;
+}
+
+.profile-buttons{
+    padding-top: 8rem;
 }
 
 .inputCont{
-    background-color: #f8f9fa;
-    color: #000;
-    border: none;
+    color: #333;
     font-size: 16px;
-    width: 70%;
-}
-
-.btn:hover{
-    color: #8690a0;
-    background: #1e2229;
 }
