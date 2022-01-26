@@ -13,16 +13,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
 	<div class="page-wrapper chiller-theme toggled">
-		
-		<nav  class="sidebar-wrapper">
+
+		<nav class="sidebar-wrapper">
 			<div class="sidebar-content">
 				<div class="sidebar-brand">
 					<a href="#"></a>
 				</div>
 				<div class="sidebar-header">
 					<div class="user-pic">
-						<img class="img-responsive img-rounded"
-							src="http://cdn.onlinewebfonts.com/svg/img_81837.png"
+						<img class="img-responsive img-rounded" src="http://cdn.onlinewebfonts.com/svg/img_81837.png"
 							alt="User picture">
 					</div>
 					<div class="user-info">
@@ -30,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<strong><?= $this->session->userdata('auth_user')['firstname']?>
 								<?= $this->session->userdata('auth_user')['lastname']?></strong>
 						</span>
-						<span class="user-role">Administrator</span>
+						<span class="user-role"><?= $this->session->userdata('auth_user')['position']?></span>
 						<span class="user-status">
 							<i class="fa fa-circle"></i>
 							<span>Online</span>
@@ -40,10 +39,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- sidebar-search  -->
 				<div class="sidebar-menu">
 					<ul>
-                        <li class="header-menu">
+						<li class="header-menu">
 							<span>Profile</span>
 						</li>
-                        <li class="sidebar" >
+						<li class="sidebar">
 							<a href="<?php echo base_url('Admin/Profile'); ?>" active>
 								<i class="fa fa-user"></i>
 								<span>Profile</span>
@@ -53,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<span>General</span>
 						</li>
 						<li class="sidebar">
-							<a href="<?php echo base_url('Admin/Dashboard'); ?>" >
+							<a href="<?php echo base_url('Admin/Dashboard'); ?>">
 								<i class="fa fa-tachometer-alt"></i>
 								<span>Dashboard</span>
 							</a>
@@ -82,11 +81,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<span>Payroll</span>
 							</a>
 						</li>
-                        <li class="header-menu">
+						<li class="header-menu">
 							<span>Settings</span>
 						</li>
-                        <li class="sidebar">
-							<a href="<?php echo base_url('Admin/ChangePassword'); ?>">
+						<li class="sidebar">
+							<a href="#changePasswordModal" class="changePass" data-toggle="modal">
 								<i class="fa fa-key"></i>
 								<span>Change Password</span>
 							</a>
@@ -102,8 +101,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- sidebar-menu  -->
 			</div>
 			<!-- sidebar-content  -->
-			
 		</nav>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url("assets/js/sidebar.js")?>"></script>
+
+		<div class="modal fade" id="changePasswordModal">
+			<div class=" modal-dialog " style=" width:150vw;height:auto">
+			<div class="modal-content dark-blue">
+				<div class="modal-body">
+					<button type="button" class="close text-faded" data-dismiss="modal" aria-label="Close">&times;</button>
+					<div class="form-group">
+						<form action="#" method="POST" name="signupForm" id="signupForm">
+							<h2 class="formTitle text-faded">
+								Change Password
+							</h2>
+							<div class="inputDiv">
+								<label class="inputLabel text-faded" for="password">Current Password</label>
+								<input type="password"  name="currentpass"  required>
+							</div>
+							<div class="inputDiv">
+								<label class="inputLabel text-faded" for="password">New Password</label>
+								<input type="password" name="newpass" id="newpassword"  required>
+							</div>
+							<div class="inputDiv">
+								<label class="inputLabel text-faded" for="confirmPassword">Confirm Password</label>
+								<input type="password" name="confirmpass" id="confirmpassword" required>
+
+							</div>
+							<div class="buttonWrapper">
+								<button type="submit"
+									class="submitButton bg-success">
+									<span>Continue</span>
+								</button>
+								<br>
+								<button type="cancel" data-dismiss="modal"
+									class="submitButton bg-danger">
+									<span>Cancel</span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var newpass = document.getElementById("newpassword");
+		var confirmpass = document.getElementById("confirmpassword");
+		var unmatched = document.getElementById("notmatch");
+		console.log(newpass + confirmpass);
+		// new password and confirm password validation
+		function validatePassword() {
+			if (newpass.value != confirmpass.value) {
+				confirmpass.setCustomValidity("Passwords don't Match");
+
+			} else {
+				confirmpass.setCustomValidity('');
+			}
+		}
+		newpass.onchange = validatePassword;
+		confirmpass.onkeyup = validatePassword;
+	</script>
+

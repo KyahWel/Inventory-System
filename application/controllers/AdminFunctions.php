@@ -11,7 +11,7 @@ class AdminFunctions extends CI_Controller {
 
 	public function addAdmin()
 	{
-		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['firstname']) && isset($_POST['lastname'])){
+		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['employeeID'])){
 			$this->AdminModel->insertData();
 			redirect('Admin/Admin-List');
 		}
@@ -32,35 +32,26 @@ class AdminFunctions extends CI_Controller {
 		$output = '
 			<form method="POST" action="../AdminFunctions/updateAdmin/'.$records->adminID.'">
 				<div class="modal-header">
-					<h4 class="modal-title">Edit Admin</h4>
-					<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title text-faded">Edit Admin</h4>
+					<button type="button" class="close text-faded" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label>Firstname</label>
+						<label class=" text-faded">Firstname</label>
 						<input type="text" class="form-control" name="firstname" value="'.$records->firstname.'" required>
 					</div>
 					<div class="form-group">
-						<label>Lastname</label>
+						<label class=" text-faded">Lastname</label>
 						<input type="text" class="form-control" name="lastname"  value="'.$records->lastname.'" required>
 					</div>
 					<div class="form-group">
-						<label>Username</label>
+						<label class=" text-faded">Username</label>
 						<input type="text" class="form-control" name="username"  value="'.$records->username.'" required>
-					</div>
-					<div class="form-group">
-						<label>Position at Company</label>
-						<select name="positon" class="form-control" requred>
-							<option value="'.$records->position.'" selected hidden disabled>'.$records->position.'</option>
-							<option value="Admin">Admin</option>
-							<option value="Secretary">Secretary</option>
-						</select>
-					</div>
-					
+					</div>	
 				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Submit">
+				<div class="modal-footer bg-dark">
+					<input type="button" class="btn btn-default bg-white text-dark" data-bs-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" value="Add">
 				</div>
 			</form>
 		';
@@ -71,16 +62,16 @@ class AdminFunctions extends CI_Controller {
 		$adminData = $this->input->post('adminData');
 		$output='
 				<form action="../AdminFunctions/deleteAdmin/'.$adminData.'">
-					<div class="modal-header">
+					<div class="modal-header  text-faded">
 						<h4 class="modal-title">Delete Admin</h4>
-						<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+						<button type="button" class="close text-faded" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body  text-faded">
 						<p>Are you sure you want to delete these Records?</p>
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<div class="modal-footer bg-dark">
+						<input type="button" class="btn btn-default bg-white text-dark" data-bs-dismiss="modal" value="Cancel">
 						<input type="submit" class="btn btn-danger" value="Delete">
 					</div>
 				</form>

@@ -52,43 +52,41 @@
 	</div>
 	</div>
 	<!-- Add Modal HTML -->
-	<div id="addAdminModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
+	<div id="addAdminModal" class="modal fade ">
+		<div class="modal-dialog modal-dialog-centered" style="width:150vw;height:auto">
+			<div class="modal-content dark-blue">
 				<form method="POST" action="<?php echo site_url('AdminFunctions/addAdmin')?>">
 					<div class="modal-header">
-						<h4 class="modal-title">Add Admin</h4>
-						<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title text-faded">ADD ADMIN</h4>
+						<button type="button" class="close text-faded" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
 						<div class="form-group">
-							<label>Firstname</label>
-							<input type="text" class="form-control" name="firstname" required>
+							<div>
+								<label class=" text-faded"> SELECT EMPLOYEE TO BECOME AN ADMIN: </label>
+							</div>
+							<div>
+							<select name="employeeID" class="form-control" id="employeeID">
+								<option value="" readonly hidden>--Please Select an Employee--</option>
+								<?php foreach($employee as $employee){?>
+									<?php if($employee->position == "Secretary"):?>
+										<option value="<?php echo $employee->employeeID?>"><?php echo $employee->firstname?> <?php echo $employee->lastname?></option>
+									<?php endif ?>
+								<?php } ?>
+							</select>
+							</div>							
 						</div>
 						<div class="form-group">
-							<label>Lastname</label>
-							<input type="text" class="form-control" name="lastname"  required>
-						</div>
-						<div class="form-group">
-							<label>Username</label>
+							<label class=" text-faded">Username</label>
 							<input type="text" class="form-control" name="username"  required>
 						</div>
 						<div class="form-group">
-							<label>Password</label>
+							<label class=" text-faded">Password</label>
 							<input type="text" class="form-control"  name="password"  required>
-						</div>
-                        <div class="form-group">
-							<label>Position at Company</label>
-                            <select name="position" class="form-control" requred>
-                                <option value="" selected hidden disabled>Please select</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Secretary">Secretary</option>
-                            </select>
-						</div>
-                        
+						</div>                      
 					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
+					<div class="modal-footer bg-dark">
+						<input type="button" class="btn btn-default bg-white text-dark" data-bs-dismiss="modal" value="Cancel">
 						<input type="submit" class="btn btn-success" value="Add">
 					</div>
 				</form>
@@ -97,8 +95,9 @@
 	</div>
 	<!-- Edit Modal HTML -->
 	<div id="editAdminModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div class="modal-dialog modal-dialog-centered" style="width:150vw;height:auto">
+			<div class="modal-content dark-blue">
+			<div class="modal-body text-faded">
                 <div id="edit_admin">
 
                 </div>
@@ -107,8 +106,8 @@
 	</div>
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div class="modal-dialog modal-dialog-centered" style="width:150vw;height:auto">
+			<div class="modal-content dark-blue">
 				<div id="delete_admin">
 
                 </div>

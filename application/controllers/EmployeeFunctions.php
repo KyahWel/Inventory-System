@@ -33,7 +33,7 @@ class EmployeeFunctions extends CI_Controller {
                 <p>TIN Number: '.$records->tin_number.'</p>
                 <p>Employment Date: '.$records->employmentDate.'</p>
                 <div class="editAnnouncementButton d-flex justify-content-end">
-                    <button type="button" class="btn btn-info" value="submit" data-bs-dismiss="modal">Okay</button>
+                    <button type="button" class="btn btn-success" value="submit" data-bs-dismiss="modal">Okay</button>
                 </div>
 		';
 		echo $output;
@@ -68,8 +68,8 @@ class EmployeeFunctions extends CI_Controller {
 						<p>TIN Number: <br><input type="text" class="form-control" value="'.$records->tin_number.'" disabled  required name="tin-number"></p>
 						<p>Employment Date: <br><input type="date" class="form-control" value="'.$records->employmentDate.'" disabled required name="employmentDate"></p>
 						<div class="editAnnouncementButton d-flex justify-content-end">
-							<button type="cancel" class="btn btn-default" value="submit" data-bs-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-info" value="submit">Save</button>
+							<button type="cancel" class="btn btn-default bg-white text-dark me-2" value="cancel" data-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-success" value="submit">Edit</button>
 						</div>
 					</div>
 				</div>
@@ -91,22 +91,20 @@ class EmployeeFunctions extends CI_Controller {
 		$output ='
 			<form action="../EmployeeFunctions/delete/'.$EmployeeData.'">
 				<div class="modal-header">
-					<h4 class="modal-title">Delete Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title text-faded">Delete Employee?</h4>
+					<button type="button" class="close text-faded" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">
-					<p>Are you sure you want to delete these Records?</p>
+				<div class="modal-body text-faded">
+					<p>Are you sure you want to delete this Employee\'s Records?</p>
 					<p class="text-warning"><small>This action cannot be undone.</small></p>
 				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
+				<div class="editAnnouncementButton d-flex justify-content-end p-3">
+							<button type="cancel" class="btn btn-default bg-white text-dark me-2" value="cancel" data-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-danger" value="submit">Delete</button>
+						</div>
 			</form>
 		';
 		echo $output;
-		// $this->Employee->deleteData($id);
-		// redirect("Admin/Employee-List");
 	}
 
 	public function delete($id)
@@ -120,7 +118,6 @@ class EmployeeFunctions extends CI_Controller {
 	{	
 		$this->EmployeeModel->changePassword($id);
 	}
-
 	
 	public function timeIn(){
 		$employeeData = $this->input->post('employeeNumber');

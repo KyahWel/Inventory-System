@@ -4,15 +4,15 @@
 </head>
 
 <main class="mt-5">
-
 	<div class="main-div rounded">
-		<div class="container mx-2 bootstrap snippet">
-			<div class="row">
+		<div class="container bootstrap snippet">
+			<div class=" container d-flex flex-row col-lg-12 col-sm-6">
 				<div class="col-lg-3 col-sm-6">
 					<div class="circle-tile ">
 						<div class="circle-tile-heading header-bg"><i class="fa fa-users fa-fw fa-3x"></i></div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded">Total Employees</div>
+							<div class="circle-tile-description text-faded">Total Employees <br>[As of
+								<?php echo date("m/d/Y")?>]</div>
 							<div class="circle-tile-number text-faded "><?php echo $employee?></div>
 						</div>
 					</div>
@@ -24,7 +24,8 @@
 								src="<?php echo base_url("assets/images/sss.png")?>" alt="SSS Logo">
 						</div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded"> SSS Contribution</div>
+							<div class="circle-tile-description text-faded"> SSS Contribution <br> [Employer's Share]
+							</div>
 							<div class="circle-tile-number text-faded ">PHP 30,000</div>
 						</div>
 					</div>
@@ -35,8 +36,10 @@
 							<img src="<?php echo base_url("assets/images/phl.png")?>" alt="SSS Logo">
 						</div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded">Philhealth Contribution</div>
+							<div class="circle-tile-description text-faded">Philhealth Contribution <br> [Employer's
+								Share]</div>
 							<div class="circle-tile-number text-faded ">PHP 30,000</div>
+
 						</div>
 					</div>
 				</div>
@@ -45,7 +48,8 @@
 						<div class="circle-tile-heading header-bg"><img class="w-75 mt-1"
 								src="<?php echo base_url("assets/images/pg.png")?>" alt="SSS Logo"></div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded">Pag Ibig Contribution</div>
+							<div class="circle-tile-description text-faded">Pag Ibig Contribution <br> [Employer's
+								Share]</div>
 							<div class="circle-tile-number text-faded ">PHP <?php echo $employee*100?></div>
 						</div>
 					</div>
@@ -53,77 +57,215 @@
 			</div>
 		</div>
 
-		<div class="p-3  d-flex flex-row">
-			<div class="mx-1 d-flex flex-column p-3 border dark-blue border-dark rounded shadow">
-				<h4 style="font-family:'Century Gothic';" class="text-faded">MONTHLY BREAKDOWN OF EXPENSES:</h4>
-				<canvas id="chart" height="350" width="1260"></canvas>
+		<div class=" container d-flex flex-row col-lg-12 col-sm-6">
+			<div class=" d-flex flex-column p-3 m-1 border dark-blue border-dark rounded shadow col-lg-12 col-sm-6">
+				<h4 style="font-family:'Century Gothic';" class="text-faded"><?php echo date("Y")?> MONTHLY BREAKDOWN OF
+					EXPENSES :</h4><br>
+				<canvas id="chart"></canvas>
 			</div>
-
 		</div>
 
-		<div class="p-3 d-flex flex-row">
-			<div class="container bg-white d-flex mx-1 py-2 border dark-blue border-dark flex-row rounded">
-				<div class="container">
-					<div class="text-center text-faded"><h4><?php echo date("F d, Y")?></h4><br></div>
-					<table class="table table-borderless" id="employeeTable">
-						<thead class="text-center text-faded">
-							<tr>
-								<th>
-									<h4 style="font-family:'Century Gothic';" class="text-faded">EMPLOYEE</h4>
-								</th>
-								<th>
-									<h4 style="font-family:'Century Gothic';" class="text-faded">POSITION</h4>
-								</th>
-								<th>
-									<h4 style="font-family:'Century Gothic';" class="text-faded">ACTION</h4>
-								</th>
-							</tr>
-						</thead>
-						<tbody class="text-center" style="color: white; font-size: 1.2rem">
-
-							<tr>
-								<td>
-									<p>William Hod</p>
-								</td>
-								<td>
-									<p>Driver</p>
-								</td>
-								<td>
-									<div class="d-inline-flex align-items-center active">
-										<div class="circle"></div>
-										<div class="ps-2">Time In</div>
-									</div>
-									8:00
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p>Angelo Edrosa</p>
-								</td>
-								<td>
-									<p>Helper</p>
-								</td>
-								<td>
-									<div class="d-inline-flex align-items-center inactive">
-										<div class="circle"></div>
-										<div class="ps-2">Time Out</div>
-									</div>
-									15:00
-								</td>
-							</tr>
-						</tbody>
-					</table>
+		<div class="mt-3 container d-flex flex-row col-lg-12 col-sm-6">
+			<div class="container bg-white d-flex mx-1 py-2 dark-blue flex-column rounded">
+				<div class="container" style="overflow: scroll">
+					<div class="text-center text-faded">
+						<h5>Employees' activity log for <?php echo date("F d, Y")?></h5><br>
+					</div>
+					<div class="activtytable">
+						<table class="table table-borderless">
+							<thead class="text-center text-white">
+								<tr>
+									<th>
+										<h5 style="font-family:'Century Gothic'; font-weight:bold;">EMPLOYEE</h5>
+									</th>
+									<th>
+										<h5 style="font-family:'Century Gothic'; font-weight:bold;">POSITION</h5>
+									</th>
+									<th>
+										<h5 style="font-family:'Century Gothic'; font-weight:bold;">ACTION</h5>
+									</th>
+								</tr>
+							</thead>
+							<tbody class="text-center text-faded">
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Driver</p>
+									</td>
+									<td>
+										<div class="d-inline-flex align-items-center active">
+											<div class="circle"></div>
+											<div class="ps-2">Time In</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<p>Angelo Edrosa</p>
+									</td>
+									<td>
+										<p>Helper</p>
+									</td>
+									<td>
+										<div class="d-inline-flex align-items-center inactive">
+											<div class="circle"></div>
+											<div class="ps-2">Time Out</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Driver</p>
+									</td>
+									<td>
+										<div class="d-inline-flex align-items-center inactive">
+											<div class="circle"></div>
+											<div class="ps-2">Time Out</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-			<div class=" p-3 d-flex flex-column border dark-blue border-dark rounded shadow">
-				<h4 style="font-family:'Century Gothic';" class="text-faded">EXPENSES FOR MONTH OF
-					<?php echo strtoupper(date('F'))?></h4>
+			<div class=" p-3  dark-blue rounded shadow  flex-column col-lg-5">
+				<h5 style="font-family:'Century Gothic';" class="text-faded">EXPENSES FOR MONTH OF
+					<?php echo strtoupper(date('F'))?></h5>
 				<br>
-				<canvas id="month-chart" height="70" width="120"></canvas>
+				<canvas id="month-chart"></canvas>
 			</div>
-
 		</div>
 
+		<div class="mt-2 container d-flex flex-row col-lg-12 col-sm-6">
+			<div class="container bg-white d-flex ms-1 py-2 mt-2 dark-blue flex-column rounded">
+				<div class="container">
+					<div class="text-center text-white">
+						<h3>EMPLOYEE AND EMPLOYER'S CONTRIBUTION TABLE</h3><br>
+					</div>
+					<div class="tablecont">
+
+						<table class="table table-borderless">
+							<thead class="text-center text-white">
+								<tr>
+									<th>
+										<h5 style="font-family:'Century Gothic';font-weight:bold;">EMPLOYEE</h5>
+									</th>
+									<th>
+										<h5 style="font-family:'Century Gothic';font-weight:bold;">POSITION</h5>
+									</th>
+									<th>
+										<h5 style="font-family:'Century Gothic';font-weight:bold;">SSS</h5>
+									</th>
+									<th>
+										<h5 style="font-family:'Century Gothic';font-weight:bold;">PHILHEALTH</h5>
+									</th>
+									<th>
+										<h5 style="font-family:'Century Gothic';font-weight:bold;">PAG-IBIG</h5>
+									</th>
+								</tr>
+							</thead>
+							<tbody class="text-center text-faded">
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Employer</p>
+									</td>
+									<td>
+										<p>PHP 300</p>
+									</td>
+									<td>
+										<p>PHP 175</p>
+									</td>
+									<td>
+										<p>PHP 100</p>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Employer</p>
+									</td>
+									<td>
+										<p>PHP 300</p>
+									</td>
+									<td>
+										<p>PHP 175</p>
+									</td>
+									<td>
+										<p>PHP 100</p>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Employer</p>
+									</td>
+									<td>
+										<p>PHP 300</p>
+									</td>
+									<td>
+										<p>PHP 175</p>
+									</td>
+									<td>
+										<p>PHP 100</p>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Employer</p>
+									</td>
+									<td>
+										<p>PHP 300</p>
+									</td>
+									<td>
+										<p>PHP 175</p>
+									</td>
+									<td>
+										<p>PHP 100</p>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<p>William Hod</p>
+									</td>
+									<td>
+										<p>Employer</p>
+									</td>
+									<td>
+										<p>PHP 300</p>
+									</td>
+									<td>
+										<p>PHP 175</p>
+									</td>
+									<td>
+										<p>PHP 100</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<br>
 </main>
@@ -140,7 +282,7 @@
 			responsive: false,
 		},
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+			labels: [" ", "January", "February", "March", "April", "May", "June", "July", "August", "September",
 				"October",
 				"November", "December"
 			],
@@ -148,19 +290,19 @@
 					label: 'SSS',
 
 					borderColor: 'rgba(255,99,132,1)',
-					data: [3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
+					data: [0, 3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
 				},
 				{
 					label: 'Philhealth',
 
 					borderColor: 'rgba(54, 162, 235, 1)',
-					data: [1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
+					data: [0, 1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
 				},
 				{
 					label: 'PagIbig',
 
 					borderColor: 'rgba(255, 206, 86, 1)',
-					data: [2000, 3000, 4000, 6000, 4000, 8000, 5000, 4500, 7000, 6000, 8000, 5000],
+					data: [0, 2000, 3000, 4000, 6000, 4000, 8000, 5000, 4500, 7000, 6000, 8000, 5000],
 				}
 			]
 		},
@@ -176,45 +318,18 @@
 	});
 
 	const chart2 = document.getElementById("month-chart").getContext('2d');
-	const myChart2 = new Chart(ctx, {
-		type: 'line',
-		options: {
-			responsive: false,
-		},
+	const myChart2 = new Chart(chart2, {
+		type: "doughnut",
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-				"October",
-				"November", "December"
-			],
+			labels: ["SSS", "PAGIBIG", " PHILHEALTH"],
 			datasets: [{
-					label: 'SSS',
-
-					borderColor: 'rgba(255,99,132,1)',
-					data: [3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
-				},
-				{
-					label: 'Philhealth',
-
-					borderColor: 'rgba(54, 162, 235, 1)',
-					data: [1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
-				},
-				{
-					label: 'PagIbig',
-
-					borderColor: 'rgba(255, 206, 86, 1)',
-					data: [2000, 3000, 4000, 6000, 4000, 8000, 5000, 4500, 7000, 6000, 8000, 5000],
-				}
-			]
+				backgroundColor: ["#b91d47", "#00aba9", "#2b5797"],
+				data: [3000, 4000, 2000],
+			}]
 		},
 		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true,
-					}
-				}]
-			}
-		},
+
+		}
 	});
 
 </script>

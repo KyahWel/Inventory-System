@@ -8,6 +8,7 @@ class Admin extends CI_Controller{
 		$this->load->model('Authentication');
 		$this->load->model('Employee');
 		$this->load->model('AdminModel');
+		$this->load->model('EmployeeAttendance');
 	}
 	
 	public function Dashboard()
@@ -20,6 +21,7 @@ class Admin extends CI_Controller{
 
 	public function Admin()
 	{	
+		$data['employee'] = $this->Employee->viewData();
 		$data['admin'] = $this->AdminModel->viewData();
 		$this->load->view('Header');
 		$this->load->view('Admin-Sidebar/Admin',$data);
@@ -36,8 +38,9 @@ class Admin extends CI_Controller{
 
 	public function Payroll()
 	{
+		$data['payroll'] = $this->EmployeeAttendance->view_data();
 		$this->load->view('Header');
-		$this->load->view('Admin-Sidebar/Payroll');
+		$this->load->view('Admin-Sidebar/Payroll',$data);
 		$this->load->view('Footer');
 	}
 

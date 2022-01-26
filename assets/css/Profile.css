@@ -1,3 +1,18 @@
+
+/* CHANGE PASSWORD CSS */
+
+.dark-blue {
+	background: -webkit-linear-gradient(#141E30, #1A2226);
+}
+
+.text-dark-blue {
+	color: #34495E;
+}
+
+.text-faded {
+	color: rgba(255, 255, 255, 0.7);
+}
+
 .form-control:focus {
     box-shadow: none;
     border-color: #6a7e99
@@ -17,11 +32,36 @@
     border-color: #212529!important;
 }
 
+input[type="text"]
+{
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Century Gothic";
+    color: white;
+    width: 12vw;
+}
+
+label{
+    font-weight: lighter;
+    font-family: "Century Gothic";
+    color: #6a7e99
+}
+
+hr.style{
+    margin-top: 0em;
+    margin-bottom: 0em;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, #212529, #6a7e99, #212529);
+}
+
 .profile-box{
     box-shadow: 0 0px 1px 1px #888;
-    background: -webkit-linear-gradient(#ffffffeb, rgb(213 211 211 / 20%));
+    background: #1A2226;
     margin-top: 2rem;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 .border-right{
@@ -49,7 +89,3 @@
     padding-top: 8rem;
 }
 
-.inputCont{
-    color: #333;
-    font-size: 16px;
-}

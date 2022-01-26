@@ -9,7 +9,7 @@ class PayrollComputation extends CI_Model {
 
 	public function computeOTRate ($timeOut){
 		$overtime = date_diff(date_create($timeOut), date_create('16:00:00'));
-		$overtimeRate = $overtime->h * 83.91;
+		$overtimeRate = ($overtime->m/30) * 41.955;
 		return $overtimeRate;
 	}
 

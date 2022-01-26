@@ -4,6 +4,27 @@
   width: 76vw;
 }
 
+.tablecont{
+  overflow: scroll; 
+  height:250px 
+}
+
+.activtytable{
+  overflow: scroll; 
+  height:230px 
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
 .title h3{
   font-size: 26px;
   font-weight: 500;
@@ -114,6 +135,11 @@
     background-color: #ff0000
 }
 
+.table tbody td  {
+  font-size: 1.2vw;
+  font-family:'Century Gothic';
+  font-weight: lighter;
+}
 
 table {
   border-collapse: collapse;

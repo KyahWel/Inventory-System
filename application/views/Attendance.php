@@ -47,7 +47,7 @@
 				<div class="col-lg-12 login-key">
 					<i class="fa fa-clock" aria-hidden="true"></i>
 				</div>
-				<div class="col-lg-12 login-title">EMPLOYEE ATTENDANCE</div>
+				<div class="col-lg-12 login-title">EMPLOYEE ATTENDANCE <?php  ?></div>
 
 				<div class="col-lg-12 login-form px-4">
 					<form id="form_id" method="POST">

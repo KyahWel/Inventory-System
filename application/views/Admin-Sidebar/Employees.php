@@ -35,7 +35,7 @@
 					<tbody>
 						<?php foreach($employee as $row){?>
 						<tr>
-							<td> <a class="view_employee" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
+							<td> <a class="view_employee" style="cursor: pointer;" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
 									data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">
 									<?php echo $row->employeeNumber?>
 								</a></td>
@@ -62,13 +62,13 @@
 		<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addAnnouncementHeader"
 			aria-hidden="true">
 			<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
+				<div class="modal-content dark-blue">
 					<div class="modal-header">
-						<h5 class="modal-title" id="addAnnouncementHeader">Add Employee</h5>
-						<button type="button" class="close" data-bs-dismiss="modal"
+						<h5 class="modal-title text-faded" id="addAnnouncementHeader">Add Employee</h5>
+						<button type="button" class="close text-faded" data-bs-dismiss="modal"
 							aria-label="Close">&times;</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body text-faded">
 						<div class="form-group">
 							<form action="<?php echo site_url('EmployeeFunctions/addEmployee')?>" method="POST">
 								<div class="row">
@@ -96,13 +96,12 @@
 									</div>
 								</div>
 								<div class="editAnnouncementButton d-flex justify-content-end">
-									<button type="cancel" class="btn btn-default" value="cancel" data-bs-dismiss="modal">Cancel</button>
+									<button type="cancel" class="btn btn-default bg-white text-dark me-2" value="cancel" data-bs-dismiss="modal">Cancel</button>
 									<button type="submit" class="btn btn-success" value="submit">Add</button>
 								</div>
 							</form>
 						</div>
-					</div>
-					
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -111,12 +110,12 @@
 		<div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editAnnouncementHeader"
 			aria-hidden="true">
 			<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
+				<div class="modal-content dark-blue">
 					<div class="modal-header">
-						<h5 class="modal-title" id="editAnnouncementHeader">Edit Employee</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h5 class="modal-title text-faded" id="editAnnouncementHeader">Edit Employee</h5>
+						<button type="button" class="close text-faded" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body text-faded">
 						<div id="edit_employee" class="form-group"></div>
 					</div>
 				</div>
@@ -127,13 +126,13 @@
 		<div class="modal fade" id="viewEmployeeModal" tabindex="-1" aria-labelledby="viewAnnouncementHeader"
 			aria-hidden="true">
 			<div class="modal-dialog modal-lg modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="viewAnnouncementHeader">View Employee</h5>
-						<button type="button" class="close" data-bs-dismiss="modal"
+				<div class="modal-content dark-blue">
+					<div class="modal-header text-faded">
+						<h5 class="modal-title" id="viewAnnouncementHeader">Employee Details</h5>
+						<button type="button" class="close text-faded" data-bs-dismiss="modal"
 							aria-label="Close">&times;</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body text-faded">
 						<div id="view_employee" class="form-group"></div>
 					</div>
 				</div>
@@ -143,7 +142,7 @@
 		<!-- DELETE -->
 		<div id="deleteEmployeeModal" class="modal fade">
 			<div class="modal-dialog">
-				<div class="modal-content">
+				<div class="modal-content dark-blue">
 					<div id="delete_employee"></div>
 				</div>
 			</div>

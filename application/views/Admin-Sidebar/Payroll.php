@@ -7,6 +7,7 @@
 
 <main class="page-content">
 	<div style="margin-left: 20vw; width: 78.5vw;">
+		
 		<div class="table-title">
 			<div class="row">
 				<div class="col-sm-6">
@@ -19,8 +20,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="alert alert-primary" role="alert">
+			<b> Note! Contribution for SSS, PhilHealth and Pag-Ibig will be deducted in the following weeks: </b> <br>
+			<b>1st Week</b> - SSS Contribution <br>
+			<b>2nd Week</b> - PhilHealth Contribution <br>
+			<b>3rd Week</b> - Pag-Ibig Contribution
+		</div>
 		<div class="table-responsive">
-			<table id="mytable" class="table table-striped table-hover">
+			<table id="mytable" class="table table-striped table-hover text-center">
 				<thead>
 					<th>Employee Number</th>
 					<th>Name</th>
@@ -28,15 +35,21 @@
 					<th>Late (Hours)</th>
 					<th>Rate</th>
 					<th>Gross Income</th>
-					<th>Net Income</th>
 				</thead>
 				<tbody>
-					<tr>
-
-					</tr>
+					<?php foreach($payroll as $payroll){?>
+						<tr>
+							<td><?php echo $payroll->employeeNumber?></td>
+							<td><?php echo $payroll->firstname?> <?php echo $payroll->lastname?></td>
+							<td><?php echo ($payroll->minutesOvertime)/60?></td>
+							<td><?php echo ($payroll->minutesLate)/60?></td>
+							<td>PHP <?php echo number_format($payroll->rate)?></td>
+							<td>PHP <?php echo (float)$payroll->GrossIncome?></td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
-			<div class="clearfix"></div>
+			
 		</div>
 	</div>
 	<!-- MODAL -->
