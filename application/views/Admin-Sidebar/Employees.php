@@ -141,7 +141,7 @@
 
 		<!-- DELETE -->
 		<div id="deleteEmployeeModal" class="modal fade">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
 				<div class="modal-content dark-blue">
 					<div id="delete_employee"></div>
 				</div>

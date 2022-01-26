@@ -62,17 +62,17 @@ class AdminFunctions extends CI_Controller {
 		$adminData = $this->input->post('adminData');
 		$output='
 				<form action="../AdminFunctions/deleteAdmin/'.$adminData.'">
-					<div class="modal-header  text-faded">
+					<div class="modal-header text-faded">
 						<h4 class="modal-title">Delete Admin</h4>
 						<button type="button" class="close text-faded" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body  text-faded">
+					<div class="modal-body text-faded">
 						<p>Are you sure you want to delete these Records?</p>
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
-					<div class="modal-footer bg-dark">
-						<input type="button" class="btn btn-default bg-white text-dark" data-bs-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-danger" value="Delete">
+					<div class="editAnnouncementButton d-flex justify-content-end p-3">
+						<button type="button" class="btn btn-default bg-white text-dark me-2" value="cancel" data-bs-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-danger" value="submit">Delete</button>
 					</div>
 				</form>
 		';
