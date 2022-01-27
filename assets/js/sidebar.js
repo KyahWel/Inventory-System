@@ -1,10 +1,10 @@
-jQuery(function ($) {
-
-	$("#close-sidebar").click(function () {
-		$(".page-wrapper").removeClass("toggled");
-	});
-	$("#show-sidebar").click(function () {
-		$(".page-wrapper").addClass("toggled");
-	});
-});
-
+var check = function() {
+    if (document.getElementById('password').value ==
+      document.getElementById('confirm_password').value) {
+      document.getElementById('message').style.color = 'green';
+      document.getElementById('message').innerHTML = 'Passwords Match';
+    } else {
+      document.getElementById('message').style.color = 'red';
+      document.getElementById('message').innerHTML = 'Passwords Do Not Match';
+    }
+  }

@@ -1,94 +1,151 @@
-body {
-    font-size: .875rem;
-   
-  }
-  
-  .feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-  }
-  
-  /*
-   * Sidebar
-   */
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100; /* Behind the navbar */
-    padding: 0;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  }
-  
-  .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 48px; /* Height of navbar */
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  }
-  
-  .sidebar .nav-link {
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .sidebar .nav-link .feather {
-    margin-right: 4px;
-    color: #999;
-  }
-  
-  .sidebar .nav-link.active {
-    color: #007bff;
-  }
-  
-  .sidebar .nav-link:hover .feather,
-  .sidebar .nav-link.active .feather {
-    color: inherit;
-  }
-  
-  .sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
-  }
-  
-  /*
-   * Navbar
-   */
-  
-  .navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-  }
-  
-  .navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
-  }
-  
-  .form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
-  }
-  
-  .form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-  }
-  
-  /*
-   * Utilities
-   */
-  
-  .border-top { border-top: 1px solid #e5e5e5; }
-  .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.main-div{
+  margin-left: 21vw;
+  width: 76vw;
+}
+
+.tablecont{
+  overflow: scroll; 
+  height:250px 
+}
+
+.activtytable{
+  overflow: scroll; 
+  height:230px 
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.title h3{
+  font-size: 26px;
+  font-weight: 500;
+  padding: 16px 30px;
+  color: #1e2229;
+  border-radius: 3px 3px 0 0;
+}
+
+.title{
+  z-index: -1;
+}
+
+.chart-container {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+}
+
+.dot-active {
+  height: 15px;
+  width: 15px;
+  background-color: green;
+  border-radius: 50%;
+  border-color: black;
+  border-width: 2px;
+  display: inline-block;
+}
+.logo{
+   background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.circle-tile {
+  margin-bottom: 15px;
+  text-align: center;
+}
+.circle-tile-heading {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  color: #FFFFFF;
+  height: 80px;
+  margin: 0 auto -40px;
+  position: relative;
+  transition: all 0.3s ease-in-out 0s;
+  width: 80px;
+}
+
+.circle-tile-heading .fa {
+  line-height: 80px;
+}
+.circle-tile-content {
+  padding-top: 50px;
+}
+.circle-tile-number {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 5px 0 15px;
+}
+.circle-tile-description {
+  text-transform: uppercase;
+}
+
+.tile-img {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
+}
+.header-bg{
+  background-color: #1A2226;
+}
+.dark-blue {
+  background: -webkit-linear-gradient(#141E30, #1A2226);
+}
+
+.text-dark-blue {
+  color: #34495E;
+}
+
+.text-faded {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* TABLE */
+
+.table tbody td .active,
+.table tbody td .inactive {
+    background-color: #B9F6CA;
+    color: #388E3C;
+    font-weight: 600;
+    padding: 1px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem
+}
+
+.table tbody td .inactive {
+    background-color: #ffb3b3;
+    color: #ff0000
+}
+
+.table tbody td .active .circle,
+.table tbody td .inactive .circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #388E3C
+}
+
+.table tbody td .inactive .circle {
+    background-color: #ff0000
+}
+
+.table tbody td  {
+  font-size: 1.2vw;
+  font-family:'Century Gothic';
+  font-weight: lighter;
+}
+
+table {
+  border-collapse: collapse;
+}
+#employeeTable {
+  table-layout: fixed;
+  width: 65rem;
+}
+

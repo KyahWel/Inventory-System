@@ -1,0 +1,91 @@
+
+/* CHANGE PASSWORD CSS */
+
+.dark-blue {
+	background: -webkit-linear-gradient(#141E30, #1A2226);
+}
+
+.text-dark-blue {
+	color: #34495E;
+}
+
+.text-faded {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #6a7e99
+}
+
+.labels {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.container{
+    box-shadow: 0 1px 3px 3px #9a9b9d;
+    height: 30rem;
+    background: -webkit-linear-gradient(#141E30, #1A2226);
+    color: #fff;
+    border-radius: 10px!important;
+    border-color: #212529!important;
+}
+
+input[type="text"]
+{
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: "Century Gothic";
+    color: white;
+    width: 12vw;
+}
+
+label{
+    font-weight: lighter;
+    font-family: "Century Gothic";
+    color: #6a7e99
+}
+
+hr.style{
+    margin-top: 0em;
+    margin-bottom: 0em;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, #212529, #6a7e99, #212529);
+}
+
+.profile-box{
+    box-shadow: 0 0px 1px 1px #888;
+    background: #1A2226;
+    margin-top: 2rem;
+    border-radius: 6px;
+}
+
+.border-right{
+    height: 30rem;
+}
+
+.profile-settings{
+    border-bottom: 1px solid rgb(167, 164, 164);
+    font-size: 1.5rem;
+}
+
+.settings{
+    font-size: 1.6rem;
+}
+
+.profile-name{
+    font-size: 1.3rem;
+}
+
+.profile-username{
+    font-size: 1.1rem;
+}
+
+.profile-buttons{
+    padding-top: 8rem;
+}
+

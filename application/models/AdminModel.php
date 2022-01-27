@@ -18,9 +18,7 @@ class AdminModel extends CI_Model {
 				'adminID' => NULL,
 				'username' => $_POST['username'],
 				'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
-				'position' => $_POST['position'],
-				'firstname' => $_POST['firstname'],
-				'lastname' => $_POST['lastname'],
+				'employeeID' => $_POST['employeeID'],
 				'dateAdded' => date("Y/m/d"),
 				'timeAdded' => date("H:i:s")
 			);
@@ -33,14 +31,19 @@ class AdminModel extends CI_Model {
 	}
 
 	public function viewData() #Read
-	{
-		$query = $this->db->query('SELECT * FROM `admin-accounts`');
+	{	
+		$query = $this->db->query('	SELECT * FROM `admin-accounts`  
+									LEFT JOIN `employee-accounts` 
+									ON `admin-accounts`.employeeID = `employee-accounts`.employeeID');
 		return $query->result();
 	}
 
 	public function getData($id) #Edit
 	{
-		$query = $this->db->query('SELECT * FROM `admin-accounts` WHERE `adminID` ='.$id) ;
+		$query = $this->db->query('	SELECT * FROM `admin-accounts`  
+									LEFT JOIN `employee-accounts` 
+									ON `admin-accounts`.employeeID = `employee-accounts`.employeeID 
+									WHERE `adminID` ='.$id) ;
 		return $query->row();
 	}
 
@@ -61,13 +64,11 @@ class AdminModel extends CI_Model {
 	}
 
 	public function login(){
-		$data = array(
-			'username' => $_POST['username'],
-		);
-		$this->db->select('*');
-		$this->db->from('admin-accounts');
-		$this->db->where($data);
-		$query=$this->db->get();
+		$username = $_POST['username'];
+		$query = $this->db->query('	SELECT * FROM `admin-accounts` 
+									LEFT JOIN `employee-accounts` 
+									ON `admin-accounts`.employeeID = `employee-accounts`.employeeID 
+									WHERE username = "'.$username.'"' );
 		if($query->num_rows()!=0){	
 			$row = $query->row();
 			if(password_verify($_POST['password'],$row->password))

@@ -42,6 +42,13 @@ class Employee extends CI_Model {
 		return $query->result();
 	}
 
+	public function countEmployee() #Read
+	{
+		$query = $this->db->query('SELECT * FROM `employee-accounts`');
+		return $query->num_rows();
+	}
+
+
 	public function getData($id) #Edit
 	{
 		$query = $this->db->query('SELECT * FROM `employee-accounts` WHERE `employeeID` ='.$id) ;

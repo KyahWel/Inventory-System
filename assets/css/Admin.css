@@ -1,4 +1,25 @@
 
+.page-content {
+    display: inline-block;
+    width: 100%;
+    padding-left: 0px;
+    padding-top: 20px;
+	overflow-x: hidden;
+  }
+
+.dark-blue {
+	background: -webkit-linear-gradient(#141E30, #1A2226);
+  }
+  
+  .text-dark-blue {
+	color: #34495E;
+  }
+  
+  .text-faded {
+	color: rgba(255, 255, 255, 0.7);
+  }
+
+  
 .table-wrapper {
 	background: #fff;
 	padding: 20px 25px;
@@ -80,10 +101,9 @@ table.table .avatar {
 	vertical-align: middle;
 	margin-right: 10px;
 } 
+
 /* Modal styles */
-.modal .modal-dialog {
-	max-width: 400px;
-}
+
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
 	padding: 20px 30px;
 }

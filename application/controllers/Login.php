@@ -26,8 +26,11 @@ class Login extends CI_Controller{
 					'adminID' => $data->adminID,
 					'password'=> $data->password,
 					'firstname' =>  $data->firstname,
+					'employeeNumber' =>  $data->employeeNumber,
 					'lastname' =>  $data->lastname,
 					'username' =>  $data->username,
+					'position' =>  $data->position,
+					'employmentDate' =>  $data->employmentDate,
 					'dateAdded' =>  $data->dateAdded,
 					'timeAdded' => $data->timeAdded
 				];
