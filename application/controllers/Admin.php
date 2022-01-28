@@ -9,11 +9,14 @@ class Admin extends CI_Controller{
 		$this->load->model('Employee');
 		$this->load->model('AdminModel');
 		$this->load->model('EmployeeAttendance');
+		$this->load->model('EventLog');
 	}
 	
 	public function Dashboard()
 	{	
 		$data['employee'] = $this->Employee->countEmployee();
+		$data['logs'] = $this->Employee->viewEmployeeLogs(date("Y-m-d"));
+		$data['data'] = $this->Employee->viewData();
 		$this->load->view('Header');
 		$this->load->view('Admin-Sidebar/Dashboard',$data);
 		$this->load->view('Footer');
@@ -53,8 +56,9 @@ class Admin extends CI_Controller{
 
 	public function Event()
 	{
+		$data['event'] = $this->EventLog->displayAll();
 		$this->load->view('Header');
-		$this->load->view('Admin-Sidebar/Eventlog');
+		$this->load->view('Admin-Sidebar/Eventlog',$data);
 		$this->load->view('Footer');
 	}
 

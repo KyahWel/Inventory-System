@@ -38,20 +38,20 @@ class AdminFunctions extends CI_Controller {
 				<div class="modal-body">
 					<div class="form-group">
 						<label class=" text-faded">Firstname</label>
-						<input type="text" class="form-control" name="firstname" value="'.$records->firstname.'" required>
+						<input type="text" class="form-control" readonly name="firstname" value="'.$records->firstname.'" required>
 					</div>
 					<div class="form-group">
 						<label class=" text-faded">Lastname</label>
-						<input type="text" class="form-control" name="lastname"  value="'.$records->lastname.'" required>
+						<input type="text" class="form-control" readonly name="lastname"  value="'.$records->lastname.'" required>
 					</div>
 					<div class="form-group">
 						<label class=" text-faded">Username</label>
 						<input type="text" class="form-control" name="username"  value="'.$records->username.'" required>
 					</div>	
 				</div>
-				<div class="modal-footer bg-dark">
-					<input type="button" class="btn btn-default bg-white text-dark" data-bs-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
+				<div class="editAnnouncementButton d-flex justify-content-end p-3">
+					<button type="button" class="btn btn-default bg-white text-dark me-2" value="cancel" data-bs-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-success" value="Submit">Edit</button>
 				</div>
 			</form>
 		';

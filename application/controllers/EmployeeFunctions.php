@@ -8,6 +8,7 @@ class EmployeeFunctions extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Employee');
 		$this->load->model('EmployeeAttendance');
+		$this->load->model('AdminModel');
 	}
 
 	public function addEmployee()
@@ -107,8 +108,11 @@ class EmployeeFunctions extends CI_Controller {
 		echo $output;
 	}
 
+	
+
 	public function delete($id)
-	{
+	{	
+		$this->AdminModel->deleteAdminLinked($id);
 		$this->Employee->deleteData($id);
 		redirect("Admin/Employee-List");
 	}

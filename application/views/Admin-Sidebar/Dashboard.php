@@ -24,7 +24,7 @@
 								src="<?php echo base_url("assets/images/sss.png")?>" alt="SSS Logo">
 						</div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded"> SSS Contribution <br> [Employer's Share]
+							<div class="circle-tile-description text-faded"> SSS Contribution <br> [Employer + Employee]
 							</div>
 							<div class="circle-tile-number text-faded ">PHP 30,000</div>
 						</div>
@@ -36,8 +36,7 @@
 							<img src="<?php echo base_url("assets/images/phl.png")?>" alt="SSS Logo">
 						</div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded">Philhealth Contribution <br> [Employer's
-								Share]</div>
+							<div class="circle-tile-description text-faded">Philhealth Contribution <br> [Employer + Employee]</div>
 							<div class="circle-tile-number text-faded ">PHP 30,000</div>
 
 						</div>
@@ -48,8 +47,7 @@
 						<div class="circle-tile-heading header-bg"><img class="w-75 mt-1"
 								src="<?php echo base_url("assets/images/pg.png")?>" alt="SSS Logo"></div>
 						<div class="circle-tile-content dark-blue">
-							<div class="circle-tile-description text-faded">Pag Ibig Contribution <br> [Employer's
-								Share]</div>
+							<div class="circle-tile-description text-faded">Pag Ibig Contribution <br> [Employer + Employee]</div>
 							<div class="circle-tile-number text-faded ">PHP <?php echo $employee*100?></div>
 						</div>
 					</div>
@@ -69,66 +67,57 @@
 			<div class="container bg-white d-flex mx-1 py-2 dark-blue flex-column rounded">
 				<div class="container" style="overflow: scroll">
 					<div class="text-center text-faded">
-						<h5>Employees' activity log for <?php echo date("F d, Y")?></h5><br>
+						<h5>Employee activity log for <?php echo date("F d, Y")?></h5><br>
 					</div>
 					<div class="activtytable">
 						<table class="table table-borderless">
 							<thead class="text-center text-white">
 								<tr>
 									<th>
-										<h5 style="font-family:'Century Gothic'; font-weight:bold;">EMPLOYEE</h5>
+										<h6 style="font-family:'Century Gothic'; font-weight:bold;">EMPLOYEE</h6>
 									</th>
 									<th>
-										<h5 style="font-family:'Century Gothic'; font-weight:bold;">POSITION</h5>
+										<h6 style="font-family:'Century Gothic'; font-weight:bold;">POSITION</h6>
 									</th>
 									<th>
-										<h5 style="font-family:'Century Gothic'; font-weight:bold;">ACTION</h5>
+										<h6 style="font-family:'Century Gothic'; font-weight:bold;">TIME IN</h6>
+									</th>
+									<th>
+										<h6 style="font-family:'Century Gothic'; font-weight:bold;">TIME OUT</h6>
 									</th>
 								</tr>
 							</thead>
 							<tbody class="text-center text-faded">
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Driver</p>
-									</td>
-									<td>
-										<div class="d-inline-flex align-items-center active">
-											<div class="circle"></div>
-											<div class="ps-2">Time In</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Angelo Edrosa</p>
-									</td>
-									<td>
-										<p>Helper</p>
-									</td>
-									<td>
+								<?php foreach($logs as $row){?>
+									<tr>
+										<td>
+											<p><?php echo $row->firstname?> <?php echo $row->lastname?></p>
+										</td>
+										<td>
+											<p><?php echo $row->position?></p>
+										</td>
+										<td>
+											<div class="d-inline-flex align-items-center active">
+												<div class="circle"></div>
+												<?php if ($row->timeIn != NULL):?>
+													<div class="ps-2"><?php echo date('h:i:s a', strtotime($row->timeIn))?></div>
+												<?php else:?>
+													<div class="ps-2"></div>			
+												<?php endif?>
+											</div>
+										</td>
+										<td>
 										<div class="d-inline-flex align-items-center inactive">
-											<div class="circle"></div>
-											<div class="ps-2">Time Out</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Driver</p>
-									</td>
-									<td>
-										<div class="d-inline-flex align-items-center inactive">
-											<div class="circle"></div>
-											<div class="ps-2">Time Out</div>
-										</div>
-									</td>
-								</tr>
+												<div class="circle"></div>
+												<?php if ($row->timeOut != NULL):?>
+													<div class="ps-2"><?php echo date('h:i:s a', strtotime($row->timeOut))?></div>
+												<?php else:?>
+													<div class="ps-2"></div>			
+												<?php endif?>
+											</div>
+										</td>
+									</tr>
+								<?php } ?>							
 							</tbody>
 						</table>
 					</div>
@@ -171,95 +160,25 @@
 								</tr>
 							</thead>
 							<tbody class="text-center text-faded">
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Employer</p>
-									</td>
-									<td>
-										<p>PHP 300</p>
-									</td>
-									<td>
-										<p>PHP 175</p>
-									</td>
-									<td>
-										<p>PHP 100</p>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Employer</p>
-									</td>
-									<td>
-										<p>PHP 300</p>
-									</td>
-									<td>
-										<p>PHP 175</p>
-									</td>
-									<td>
-										<p>PHP 100</p>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Employer</p>
-									</td>
-									<td>
-										<p>PHP 300</p>
-									</td>
-									<td>
-										<p>PHP 175</p>
-									</td>
-									<td>
-										<p>PHP 100</p>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Employer</p>
-									</td>
-									<td>
-										<p>PHP 300</p>
-									</td>
-									<td>
-										<p>PHP 175</p>
-									</td>
-									<td>
-										<p>PHP 100</p>
-									</td>
-								</tr>
-
-								<tr>
-									<td>
-										<p>William Hod</p>
-									</td>
-									<td>
-										<p>Employer</p>
-									</td>
-									<td>
-										<p>PHP 300</p>
-									</td>
-									<td>
-										<p>PHP 175</p>
-									</td>
-									<td>
-										<p>PHP 100</p>
-									</td>
-								</tr>
+								<?php foreach($data as $row){?>
+									<tr>
+										<td>
+											<p><?php echo $row->firstname?> <?php echo $row->lastname?></p>
+										</td>
+										<td>
+											<p><?php echo $row->position?></p>
+										</td>
+										<td>
+											<p><?php echo $row->sssContribution?></p>
+										</td>
+										<td>
+											<p><?php echo $row->philhealthContribution?></p>
+										</td>
+										<td>
+											<p><?php echo $row->pagibigContribution?></p>
+										</td>
+									</tr>
+								<?php } ?>	
 							</tbody>
 						</table>
 					</div>

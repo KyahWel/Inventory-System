@@ -39,12 +39,33 @@
 							<?php echo date('h:i:s a', strtotime($row->timeAdded))?>
 						</td>
 						<td>
-							<a href="#editAdminModal" class="edit" data-bs-toggle="modal">
-								<i class="material-icons edit_admin" data-id="<?php echo $row->adminID?>"
+							<?php if ($this->session->userdata('auth_user')['adminID'] == 1) :?>
+									<a href="#editAdminModal" class="edit" data-bs-toggle="modal">
+									<i class="material-icons edit_admin" data-id="<?php echo $row->adminID?>"
 									data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteAdminModal" class="delete" data-bs-toggle="modal"><i
+							<?php elseif ($row->adminID == $this->session->userdata('auth_user')['adminID']): ?>
+									<a href="#editAdminModal" class="edit" data-bs-toggle="modal">
+									<i class="material-icons edit_admin" data-id="<?php echo $row->adminID?>"
+									data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<?php else:?>
+									<a href="" class="disabled editDisabled ">
+									<i class="material-icons edit_admin"
+									data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<?php endif?>
+
+							<?php if($row->adminID == 1): ?>
+									<a href="" class="disabled deleteDisabled "><i
+									class="material-icons delete_admin" data-bs-toggle="tooltip"
+									>&#xE872;</i></a>
+							<?php elseif ($row->adminID == $this->session->userdata('auth_user')['adminID']): ?>
+									<a href="#deleteAdminModal" class="delete" data-bs-toggle="modal"><i
 									class="material-icons delete_admin" data-bs-toggle="tooltip"
 									data-id="<?php echo $row->adminID?>" title="Delete">&#xE872;</i></a>
+							<?php else:?>
+									<a href="#deleteAdminModal" class="delete" data-bs-toggle="modal"><i
+									class="material-icons delete_admin" data-bs-toggle="tooltip"
+									data-id="<?php echo $row->adminID?>" title="Delete">&#xE872;</i></a>
+							<?php endif?>
 						</td>
 					</tr>
 					<?php } ?>
@@ -86,13 +107,12 @@
 						</div>
 						<div class="form-group">
 							<label class=" text-faded">Password</label>
-							<input type="text" class="form-control" name="password" required>
+							<input type="password" class="form-control" name="password" required>
 						</div>
 					</div>
-					<div class="modal-footer bg-dark">
-						<input type="button" class="btn btn-default bg-white text-dark" data-bs-dismiss="modal"
-							value="Cancel">
-						<input type="submit" class="btn btn-success" value="Add">
+					<div class="editAnnouncementButton d-flex justify-content-end p-3">
+						<button type="button" class="btn btn-default bg-white text-dark me-2" value="cancel" data-bs-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-success" value="Submit">Add</button>
 					</div>
 				</form>
 			</div>

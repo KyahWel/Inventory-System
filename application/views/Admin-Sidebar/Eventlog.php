@@ -6,7 +6,7 @@
 </head>
 
 <main class="page-content">
-	<div style="margin-left: 20vw; width: 78.5vw;" id="mainEvent">
+	<div style="margin-left: 20vw; width: 78.5vw; " id="mainEvent">
 		<!--Event Table-->
 		<div class="table-title" href="#viewEvent" class="view" data-toggle="modal">
 			<div class="row">
@@ -15,8 +15,8 @@
 					</div>
 			</div>
 		</div>
-		<div class="table-responsive">
-			<table id="mytable" class="table table borderless table-striped table-hover">
+		<div class="table-responsive" >
+			<table id="mytable" class="table table borderless table-hover" >
 				<thead>
 					<tr>
 						<th>Date & Time</th>
@@ -24,15 +24,32 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr href="#viewEvent" class="edit" data-toggle="modal">
-						<td class="d-flex datetime border-bottom-0">01/17/2022</td><!--date-->
-						<td class="d-flex datetime border-top-0">11:45:12 AM</td><!--time-->
-						<td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium, officia!</td><!--log info-->
-						<td>
-							<div class="userlog">admin</div><!--user-->
-						</td>
-					</tr>
+				<tbody >
+					<?php foreach($event as $row){?>
+						<tr href="#viewEvent" class="edit " data-toggle="modal">
+							<td class="d-flex datetime border-bottom-0"><?php echo $row->day?></td>
+							<td class="d-flex datetime border-top-0 "><?php echo $row->date?></td>
+							<td><?php echo $row->event?> at <?php echo  date('h:i:s a', strtotime($row->time_happened)) ?></td><!--log info-->
+							<td>
+			
+								<?php if($row->threatlevel == "Normal"):?>
+									<?php if($row->user == "Time Out"):?>
+										<div class="userlog bg-danger mb-1"><?php echo $row->user?></div>
+									<?php else:?>
+										<div class="userlog mb-1"><?php echo $row->user?></div>
+									<?php endif?>	
+									<div class="userlog "><?php echo $row->threatlevel?></div>
+								<?php elseif($row->threatlevel == "Warning"):?>
+									<div class="userlog mb-1"><?php echo $row->user?></div>
+									<div class="userlog bg-warning"><?php echo $row->threatlevel?></div>
+								
+								<?php elseif($row->threatlevel == "Alert"):?>
+									<div class="userlog mb-1"><?php echo $row->user?></div>
+									<div class="userlog bg-danger"><?php echo $row->threatlevel?></div>
+								<?php endif?>
+							</td>
+						</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 			<div class="clearfix"></div>
@@ -68,3 +85,5 @@
 </main>
 <script src=<?php echo base_url("assets/js/bootstrap.bundle.min.js")?>></script>
 <script src=<?php echo base_url("assets/js/Eventlog.js")?>></script>
+
+<!-- create ajax pang view ng events per date -->

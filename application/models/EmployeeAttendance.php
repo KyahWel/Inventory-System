@@ -4,27 +4,37 @@ class EmployeeAttendance extends CI_Model {
 
 	public function __construct(){	
 		$this->load->database();
+		date_default_timezone_set('Asia/Manila');
 	}
 
 	public function timeIn($employeeNumber){
 		$this->db->select('*');
-		$this->db->from('employee-accounts');
+		$this->db->from('employee_accounts');
 		$this->db->where('employeeNumber',$employeeNumber);
 		$employee = $this->db->get();
-		$dateTimeObject1 = date_create('9:00:00'); 
+		$dateTimeObject1 = date_create(date("H:i:s")); 
 		$dateTimeObject2 = date_create('8:00:00'); 
 		$late = date_diff($dateTimeObject1, $dateTimeObject2); 
 		if($employee->num_rows()>0){
 			$row = $employee->row();
-			date_default_timezone_set('Asia/Manila');
 			$data = array(
 				'employeeAttendanceID' => NULL,
 				'employeeID' => $row->employeeID,
-				'timeIn'  =>'9:00:00',
+				'timeIn'  => date("H:i:s"),
 				'timeOut'  => NULL,
 				'dateLogged' => date("Y-m-d"),
 				'day' => date("l")
 			);
+			$record = array(
+				'eventID' => NULL,
+				'user' => "Time In",
+				'event' => "Employee $row->firstname $row->lastname timed In",
+				'time_happened' => date("h:i:sa"),
+				'date' => date("Y-m-d"),
+				'day' => date("l"),
+				'threatlevel' => "Normal"
+			);
+
 			$minutes = $late->days * 24 * 60;
 			$minutes += $late->h * 60;
 			$minutes += $late->i;
@@ -42,10 +52,10 @@ class EmployeeAttendance extends CI_Model {
 					'GrossIncome' => 0,
 					'NetIncome' => 0
 				);
-				$this->db->insert('employee-payout',$payroll);
+				$this->db->insert('employee_payout',$payroll);
 			}else{
 			
-				$this->db->query('	UPDATE `employee-payout` 
+				$this->db->query('	UPDATE `employee_payout` 
 								  	SET minutesLate = minutesLate + '.$minutes.',
 									    amountLate = amountLate + '. (($minutes/15) * 16.825).'
 									WHERE employeeID = '.$row->employeeID.' AND  fromDAY = "'.date('Y-m-d', strtotime('monday this week')).'"');
@@ -54,7 +64,7 @@ class EmployeeAttendance extends CI_Model {
 										WHERE employeeID ='.$row->employeeID.' AND timeIn IS NOT NULL AND dateLogged ="'.date("Y-m-d").'"');
 			if($query->num_rows() == 0){
 				$this->db->insert('employeeattendance',$data);
-				
+				$this->db->insert('event-log',$record);
 				$this->session->set_flashdata('timeInSuccess','Time In recorded successfully');
 				
 			}
@@ -71,7 +81,7 @@ class EmployeeAttendance extends CI_Model {
 
 	public function timeOut($employeeNumber){
 		$this->db->select('*');
-		$this->db->from('employee-accounts');
+		$this->db->from('employee_accounts');
 		$this->db->where('employeeNumber',$employeeNumber);
 		$employee = $this->db->get();
 		$dateTimeObject1 = date_create('18:00:00'); 
@@ -82,18 +92,28 @@ class EmployeeAttendance extends CI_Model {
 			$data = array(
 				'timeOut'  => "18:00:00",
 			);
+			$record = array(
+				'eventID' => NULL,
+				'user' => "Time Out",
+				'event' => "Employee $row->firstname $row->lastname timed Out",
+				'time_happened' => date("h:i:sa"),
+				'date' => date("Y-m-d"),
+				'day' => date("l"),
+				'threatlevel' => "Normal"
+			);
 			$query = $this->db->query('	SELECT * FROM employeeattendance 
 										WHERE employeeID ='.$row->employeeID.' AND `timeOut` IS NULL AND dateLogged ="'.date("Y-m-d").'"');
 			if($query->num_rows() > 0){	
 				$this->db->where('employeeID',$row->employeeID);
 				$this->db->where('dateLogged',strval(date("Y-m-d")));
 				$this->db->update('employeeattendance',$data);
+				$this->db->insert('event-log',$record);
 				$this->session->set_flashdata('timeOutSuccess','Time Out recorded successfully');
 				$overtime = date_diff($dateTimeObject1, $dateTimeObject2); 
 				$minutes = $overtime->days * 24 * 60;
 				$minutes += $overtime->h * 60;
 				$minutes += $overtime->i;
-				$this->db->query('	UPDATE `employee-payout` 
+				$this->db->query('	UPDATE `employee_payout` 
 								  	SET minutesOvertime = minutesOvertime + '.$minutes.',
 									    amountOvertime = amountOvertime + '. (($minutes/30) * 41.955).',
 										GrossIncome = GrossIncome + rate - amountLate + amountOvertime
@@ -110,7 +130,7 @@ class EmployeeAttendance extends CI_Model {
 	}
 
 	public function view_data(){
-		$query = $this->db->query('SELECT * FROM `employee-payout` LEFT JOIN `employee-accounts` ON `employee-payout`.employeeID = `employee-accounts`.employeeID' );
+		$query = $this->db->query('SELECT * FROM `employee_payout` LEFT JOIN `employee_accounts` ON `employee_payout`.employeeID = `employee_accounts`.employeeID' );
 		return $query->result();
 	}
 }

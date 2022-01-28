@@ -110,7 +110,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="modal-body">
 					<button type="button" class="close text-faded" data-dismiss="modal" aria-label="Close">&times;</button>
 					<div class="form-group">
-						<form action="#" method="POST" name="signupForm" id="signupForm">
+						<form action="../AdminFunctions/changePass/<?= $this->session->userdata('auth_user')['adminID']?>" method="POST" name="signupForm" id="signupForm">
 							<h2 class="formTitle text-faded">
 								Change Password
 							</h2>

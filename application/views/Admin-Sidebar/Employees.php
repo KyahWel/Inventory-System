@@ -34,21 +34,25 @@
 					</thead>
 					<tbody>
 						<?php foreach($employee as $row){?>
-						<tr>
-							<td> <a class="view_employee" style="cursor: pointer;" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
-									data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">
-									<?php echo $row->employeeNumber?>
-								</a></td>
-							<td><?php echo $row->firstname?></td>
-							<td><?php echo $row->lastname?></td>
-							<td><?php echo $row->position?></td>
-							<td>
-								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-									class="material-icons edit_employee" data-toggle="tooltip" data-id="<?php echo $row->employeeID?>" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i 
-									class="material-icons delete_employee" data-toggle="tooltip" data-id="<?php echo $row->employeeID?>" title="Delete">&#xE872;</i></a>
-							</td>
-						</tr>
+							<?php if($row->position != "Employer"): ?>
+								<tr>
+									<td> <a class="view_employee" style="cursor: pointer;" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
+											data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">
+											<?php echo $row->employeeNumber?>
+										</a></td>
+									<td><?php echo $row->firstname?></td>
+									<td><?php echo $row->lastname?></td>
+									<td><?php echo $row->position?></td>
+									<td>
+										<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
+											class="material-icons edit_employee" data-toggle="tooltip" data-id="<?php echo $row->employeeID?>" title="Edit">&#xE254;</i></a>
+										
+									
+										<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i 
+											class="material-icons delete_employee" data-toggle="tooltip" data-id="<?php echo $row->employeeID?>" title="Delete">&#xE872;</i></a>
+									</td>
+								</tr>
+							<?php endif ?>
 						<?php } ?>
 					</tbody>
 				</table>
