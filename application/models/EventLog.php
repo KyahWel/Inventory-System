@@ -11,4 +11,9 @@ class EventLog extends CI_Model {
 		$query = $this->db->query('SELECT * FROM `event_log` ORDER BY `date` DESC,`time_happened` DESC');
 		return $query->result();
 	}
+
+	public function displayPerDate(){
+		$query = $this->db->query('SELECT DISTINCT `date` FROM `event_log` ORDER BY `date` DESC');
+		return $query->result();
+	}
 }

@@ -57,6 +57,7 @@ class Admin extends CI_Controller{
 	public function Event()
 	{
 		$data['event'] = $this->EventLog->displayAll();
+		$data['eventDate'] = $this->EventLog->displayPerDate();
 		$this->load->view('Header');
 		$this->load->view('Admin-Sidebar/Eventlog',$data);
 		$this->load->view('Footer');

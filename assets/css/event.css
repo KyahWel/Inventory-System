@@ -56,7 +56,7 @@ table.table .userlog{
     text-align: center;
 }
 table.table .datetime{
-    padding: 2px 15px;
+    padding: 2px;
 }
 table.table td a.edit {
 	color: #FFC107;
@@ -64,6 +64,7 @@ table.table td a.edit {
 table.table td i {
 	font-size: 19px;
 }
+
 /*Modal*/
 .modal .modal-header, .modal .modal-body, .modal .modal-footer {
 	padding: 20px 30px;

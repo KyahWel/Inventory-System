@@ -15,6 +15,14 @@
 					</div>
 			</div>
 		</div>
+		<div class="d-flex flex-row-reverse">
+			<select name="date" id="date">
+				<option value="" selected>--Please select a date--</option>
+				<?php foreach($eventDate as $row){?>
+					<option value="<?php echo $row->date?>"><?php echo $row->date?></option>
+				<?php } ?>	
+			</select>
+		</div>
 		<div class="table-responsive" >
 			<table id="mytable" class="table table borderless table-hover" >
 				<thead>

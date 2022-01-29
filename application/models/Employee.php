@@ -31,6 +31,17 @@ class Employee extends CI_Model {
 			'tin_number' => $_POST['tin-number'],
 			'employmentDate' => $_POST['employmentDate']	
 		);
+
+		$record = array(
+			'eventID' => NULL,
+			'user' => $this->session->userdata('auth_user')['employeeNumber'],
+			'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." added [".$holder."] ".$_POST['firstname']." as Employee",
+			'time_happened' => date("H:i:s"),
+			'date' => date("Y-m-d"),
+			'day' => date("l"),
+			'threatlevel' => "Normal"
+		);
+		$this->db->insert('event_log',$record);
 		$this->db->insert('employee_accounts',$data);
 		unset($_POST);
 		redirect('Admin/Employee-List');	
@@ -73,9 +84,36 @@ class Employee extends CI_Model {
 		);
 		$this->db->where('employeeID',$id);
 		$this->db->update('employee_accounts',$data);
+		
+		$query = $this->db->query('SELECT * FROM employee_accounts WHERE employeeID ='.$id);
+		$query = $query->row();
+		$record = array(
+			'eventID' => NULL,
+			'user' => $this->session->userdata('auth_user')['employeeNumber'],
+			'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." edited [".$query->employeeNumber."] ".$_POST['firstname']."'s account details",
+			'time_happened' => date("H:i:s"),
+			'date' => date("Y-m-d"),
+			'day' => date("l"),
+			'threatlevel' => "Normal"
+		);
+		$this->db->insert('event_log',$record);
 	}
 
 	public function deleteData($id){ #Delete
+
+		$query = $this->db->query('SELECT * FROM employee_accounts WHERE employeeID ='.$id);
+		$query = $query->row();
+		$record = array(
+			'eventID' => NULL,
+			'user' => $this->session->userdata('auth_user')['employeeNumber'],
+			'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." deleted [".$query->employeeNumber."] ".$_POST['firstname']." as employee",
+			'time_happened' => date("H:i:s"),
+			'date' => date("Y-m-d"),
+			'day' => date("l"),
+			'threatlevel' => "Normal"
+		);
+		$this->db->insert('event_log',$record);
+
 		$this->db->where('employeeID',$id);
 		$this->db->delete('employee_accounts');
 	}

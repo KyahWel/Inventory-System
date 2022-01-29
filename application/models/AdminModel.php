@@ -47,7 +47,7 @@ class AdminModel extends CI_Model {
 					'day' => date("l"),
 					'threatlevel' => "Normal"
 				);
-				$this->db->insert('event-log',$record);
+				$this->db->insert('event_log',$record);
 				unset($_POST);
 			}else{
 				$this->session->set_flashdata('adminError','User already exists'); 
@@ -95,7 +95,7 @@ class AdminModel extends CI_Model {
 			'day' => date("l"),
 			'threatlevel' => "Normal"
 			);
-		$this->db->insert('event-log',$record);
+		$this->db->insert('event_log',$record);
 	}
 
 	public function deleteAdmin($id){ #Delete
@@ -110,7 +110,7 @@ class AdminModel extends CI_Model {
 			'day' => date("l"),
 			'threatlevel' => "Normal"
 		);
-		$this->db->insert('event-log',$record);
+		$this->db->insert('event_log',$record);
 		$this->db->where('adminID',$id);
 		$this->db->delete('admin_accounts');
 	}
@@ -127,7 +127,7 @@ class AdminModel extends CI_Model {
 			'day' => date("l"),
 			'threatlevel' => "Normal"
 		);
-		$this->db->insert('event-log',$record);
+		$this->db->insert('event_log',$record);
 		$this->db->where('employeeID',$id);
 		$this->db->delete('admin_accounts');
 	}
@@ -151,7 +151,7 @@ class AdminModel extends CI_Model {
 					'day' => date("l"),
 					'threatlevel' => "Normal"
 				);
-				$this->db->insert('event-log',$record);
+				$this->db->insert('event_log',$record);
 				return $query;
 			}
 			else
@@ -164,7 +164,7 @@ class AdminModel extends CI_Model {
 					'day' => date("l"),
 					'threatlevel' => "Warning"
 					);
-				$this->db->insert('event-log',$record);
+				$this->db->insert('event_log',$record);
 				return NULL;
 		}	
 		else 
@@ -188,7 +188,7 @@ class AdminModel extends CI_Model {
 				'day' => date("l"),
 				'threatlevel' => "Alert"
 				);
-			$this->db->insert('event-log',$record);
+			$this->db->insert('event_log',$record);
 			return NULL;
 	}
 
