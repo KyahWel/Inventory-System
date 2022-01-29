@@ -61,20 +61,18 @@
 	<div class="modal fade" id="generatePayslipConfirmation" tabindex="-1" aria-labelledby="editAnnouncementHeader"
 		aria-hidden="true">
 		<div class="modal-dialog modal-lg modal-dialog-centered">
-			<div class="modal-content">
+			<div class="modal-content dark-blue">
 				<div class="modal-header">
-					<h5 class="modal-title" id="editAnnouncementHeader">Generate Payslip</h5>
-					<button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+					<h5 class="modal-title text-faded" id="editAnnouncementHeader">Generate Payslip</h5>
+					<button type="button" class="close text-faded" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form action="">
-					<div class="modal-body">
-						<p>Are you sure you want to generate this employee's payslip?</p>
+				<div class="modal-body text-faded">
+					<p>Are you sure you want to generate employees' payslip?</p>
+					<div class="editAnnouncementButton d-flex justify-content-end">
+						<button type="cancel" class="btn btn-default bg-white text-dark me-2" value="cancel" data-bs-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-success" value="submit" onclick="window.open('<?php echo base_url('GeneratePayslipController')?>', '_blank')">Generate</button>
 					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-bs-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Generate">
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

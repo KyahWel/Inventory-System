@@ -74,7 +74,10 @@
 					</div>
 					<div class="modal-body text-faded">
 						<div class="form-group">
-							<form action="<?php echo site_url('EmployeeFunctions/addEmployee')?>" method="POST">
+							<form action="<?php echo site_url('EmployeeFunctions/addEmployee')?>" method="POST" enctype="multipart/form-data">
+								<div class="row">
+									<input type="file" name="image" id="image">
+								</div>
 								<div class="row">
 									<div class="col-6">
 										<p>First Name: <br><input type="text" class="form-control" required name="firstname"></p>

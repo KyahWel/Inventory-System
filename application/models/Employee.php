@@ -6,7 +6,7 @@ class Employee extends CI_Model {
 		$this->load->database();
 	}
 
-	public function insertData() #Create
+	public function insertData($image) #Create
 	{	
 		$digits = 4;
         do{
@@ -29,7 +29,8 @@ class Employee extends CI_Model {
 			'pagibig_number' => $_POST['pagibig-number'],
 			'philhealth_number' => $_POST['philhealth-number'],
 			'tin_number' => $_POST['tin-number'],
-			'employmentDate' => $_POST['employmentDate']	
+			'employmentDate' => $_POST['employmentDate'],
+			'image_filename' => $image	
 		);
 
 		$record = array(

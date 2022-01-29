@@ -14,15 +14,27 @@ class EmployeeFunctions extends CI_Controller {
 	public function addEmployee()
 	{
 		if(isset($_POST['sss-number']) && isset($_POST['pagibig-number']) && isset($_POST['firstname']) && isset($_POST['lastname'])){
-			$this->Employee->insertData();
+			$config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'jpg|png';
+
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('image')){
+                $this->Employee->insertData($_FILES['image']['name']);
+            }else{
+                print_r($this->upload->display_errors());
+            }
+			
 		}
+		
 	}
+
 	public function viewEmployee()
 	{	
 		// Setup Ajax
 		$EmployeeData = $this->input->post('employeeData');
         $records = $this->Employee->getData($EmployeeData);
 		$output ='
+				<img src="../uploads/'.$records->image_filename.'"></img>
 				<p>First Name: '.$records->firstname.'</p>
                 <p>Last Name: '.$records->lastname.'</p>
                 <p>Age: '.$records->age.'</p>
