@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 28, 2022 at 07:20 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Host: 127.0.0.1
+-- Generation Time: Jan 29, 2022 at 10:28 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,17 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin_accounts`
 --
 
-DROP TABLE IF EXISTS `admin_accounts`;
-CREATE TABLE IF NOT EXISTS `admin_accounts` (
-  `adminID` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin_accounts` (
+  `adminID` int(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `employeeID` int(255) NOT NULL,
   `dateAdded` date NOT NULL,
-  `timeAdded` time NOT NULL,
-  PRIMARY KEY (`adminID`),
-  KEY `employeeData` (`employeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `timeAdded` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin_accounts`
@@ -52,17 +49,14 @@ INSERT INTO `admin_accounts` (`adminID`, `username`, `password`, `employeeID`, `
 -- Table structure for table `employeeattendance`
 --
 
-DROP TABLE IF EXISTS `employeeattendance`;
-CREATE TABLE IF NOT EXISTS `employeeattendance` (
-  `employeeAttendanceID` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `employeeattendance` (
+  `employeeAttendanceID` int(255) NOT NULL,
   `employeeID` int(255) NOT NULL,
   `timeIn` time DEFAULT NULL,
   `timeOut` time DEFAULT NULL,
   `dateLogged` date NOT NULL,
-  `day` varchar(255) NOT NULL,
-  PRIMARY KEY (`employeeAttendanceID`),
-  KEY `employee` (`employeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `day` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employeeattendance`
@@ -79,9 +73,8 @@ INSERT INTO `employeeattendance` (`employeeAttendanceID`, `employeeID`, `timeIn`
 -- Table structure for table `employee_accounts`
 --
 
-DROP TABLE IF EXISTS `employee_accounts`;
-CREATE TABLE IF NOT EXISTS `employee_accounts` (
-  `employeeID` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `employee_accounts` (
+  `employeeID` int(255) NOT NULL,
   `employeeNumber` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
@@ -96,16 +89,17 @@ CREATE TABLE IF NOT EXISTS `employee_accounts` (
   `sssContribution` float NOT NULL,
   `pagibigContribution` float NOT NULL,
   `philhealthContribution` float NOT NULL,
-  PRIMARY KEY (`employeeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `image_filename` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_accounts`
 --
 
-INSERT INTO `employee_accounts` (`employeeID`, `employeeNumber`, `firstname`, `lastname`, `age`, `address`, `position`, `sss_number`, `pagibig_number`, `philhealth_number`, `tin_number`, `employmentDate`, `sssContribution`, `pagibigContribution`, `philhealthContribution`) VALUES
-(1, 'EMPLOYER-0000', ' William Cris', ' Hod', '20', '149 Narra Alley Balingasa Q.C', 'Employer', '123456789', '123456789', '123456789', '123456789', '2022-01-01', 0, 0, 0),
-(3, 'Employee-8448', 'Minatozaki', 'Sana', '20', 'test address', 'Secretary', '132', '123', '123', '123', '2022-01-28', 0, 0, 0);
+INSERT INTO `employee_accounts` (`employeeID`, `employeeNumber`, `firstname`, `lastname`, `age`, `address`, `position`, `sss_number`, `pagibig_number`, `philhealth_number`, `tin_number`, `employmentDate`, `sssContribution`, `pagibigContribution`, `philhealthContribution`, `image_filename`) VALUES
+(1, 'EMPLOYER-0000', ' William Cris', ' Hod', '20', '149 Narra Alley Balingasa Q.C', 'Employer', '123456789', '123456789', '123456789', '123456789', '2022-01-01', 0, 0, 0, ''),
+(3, 'Employee-8448', 'Minatozaki', 'Sana', '20', 'test address', 'Secretary', '132', '123', '123', '123', '2022-01-28', 0, 0, 0, ''),
+(12, 'Employee-9993', 'Kian', 'Lejano', '20', 'tanza', 'Driver', '111', '222', '333', '444', '2022-01-28', 0, 0, 0, '89467842_564826347722352_3992701314617311232_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -113,9 +107,8 @@ INSERT INTO `employee_accounts` (`employeeID`, `employeeNumber`, `firstname`, `l
 -- Table structure for table `employee_payout`
 --
 
-DROP TABLE IF EXISTS `employee_payout`;
-CREATE TABLE IF NOT EXISTS `employee_payout` (
-  `payoutID` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `employee_payout` (
+  `payoutID` int(255) NOT NULL,
   `employeeID` int(255) NOT NULL,
   `minutesLate` int(255) NOT NULL,
   `amountLate` float NOT NULL,
@@ -125,9 +118,7 @@ CREATE TABLE IF NOT EXISTS `employee_payout` (
   `toDay` date DEFAULT NULL,
   `GrossIncome` float NOT NULL,
   `NetIncome` int(255) NOT NULL,
-  `amountOvertime` float NOT NULL,
-  PRIMARY KEY (`payoutID`),
-  KEY `employee-payout` (`employeeID`)
+  `amountOvertime` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -136,17 +127,15 @@ CREATE TABLE IF NOT EXISTS `employee_payout` (
 -- Table structure for table `event_log`
 --
 
-DROP TABLE IF EXISTS `event_log`;
-CREATE TABLE IF NOT EXISTS `event_log` (
-  `eventID` int(255) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `event_log` (
+  `eventID` int(255) NOT NULL,
   `user` varchar(255) NOT NULL,
   `event` varchar(255) NOT NULL,
   `time_happened` time NOT NULL,
   `date` date NOT NULL,
   `day` varchar(255) NOT NULL,
-  `threatlevel` varchar(255) NOT NULL,
-  PRIMARY KEY (`eventID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `threatlevel` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event_log`
@@ -160,7 +149,104 @@ INSERT INTO `event_log` (`eventID`, `user`, `event`, `time_happened`, `date`, `d
 (6, 'Time In', 'Employee Minatozaki Sana timed In', '02:08:54', '2022-01-29', 'Saturday', 'Normal'),
 (7, 'Time Out', 'Employee Minatozaki Sana timed Out', '02:09:04', '2022-01-29', 'Saturday', 'Normal'),
 (8, 'Time In', 'Employee  William Cris  Hod timed In', '02:26:36', '2022-01-29', 'Saturday', 'Normal'),
-(9, 'Time Out', 'Employee  William Cris  Hod timed Out', '02:31:24', '2022-01-29', 'Saturday', 'Normal');
+(9, 'Time Out', 'Employee  William Cris  Hod timed Out', '02:31:24', '2022-01-29', 'Saturday', 'Normal'),
+(10, 'Login', '[ADMIN]  William Cris Logged In Successfully', '14:58:23', '2022-01-29', 'Saturday', 'Normal'),
+(11, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-7495] minju as Employee', '16:44:05', '2022-01-29', 'Saturday', 'Normal'),
+(12, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-2824] kian as Employee', '16:49:27', '2022-01-29', 'Saturday', 'Normal'),
+(13, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '16:49:38', '2022-01-29', 'Saturday', 'Normal'),
+(14, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-2824]  as employee', '16:49:38', '2022-01-29', 'Saturday', 'Normal'),
+(15, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '16:49:40', '2022-01-29', 'Saturday', 'Normal'),
+(16, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-7495]  as employee', '16:49:40', '2022-01-29', 'Saturday', 'Normal'),
+(17, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-5548] 11 as Employee', '16:55:36', '2022-01-29', 'Saturday', 'Normal'),
+(18, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-8121] kian as Employee', '16:58:36', '2022-01-29', 'Saturday', 'Normal'),
+(19, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '16:58:40', '2022-01-29', 'Saturday', 'Normal'),
+(20, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-5548]  as employee', '16:58:40', '2022-01-29', 'Saturday', 'Normal'),
+(21, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '17:01:22', '2022-01-29', 'Saturday', 'Normal'),
+(22, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-8121]  as employee', '17:01:22', '2022-01-29', 'Saturday', 'Normal'),
+(23, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-2814] minju as Employee', '17:02:59', '2022-01-29', 'Saturday', 'Normal'),
+(24, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-4737] 1 as Employee', '17:03:44', '2022-01-29', 'Saturday', 'Normal'),
+(25, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-7628] qw as Employee', '17:04:23', '2022-01-29', 'Saturday', 'Normal'),
+(26, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '17:04:55', '2022-01-29', 'Saturday', 'Normal'),
+(27, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-7628]  as employee', '17:04:55', '2022-01-29', 'Saturday', 'Normal'),
+(28, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '17:04:57', '2022-01-29', 'Saturday', 'Normal'),
+(29, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-4737]  as employee', '17:04:57', '2022-01-29', 'Saturday', 'Normal'),
+(30, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '17:05:00', '2022-01-29', 'Saturday', 'Normal'),
+(31, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-2814]  as employee', '17:05:00', '2022-01-29', 'Saturday', 'Normal'),
+(32, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-8729] minju as Employee', '17:05:20', '2022-01-29', 'Saturday', 'Normal'),
+(33, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted []  as Employee', '17:06:33', '2022-01-29', 'Saturday', 'Normal'),
+(34, 'EMPLOYER-0000', '[ADMIN]  William Cris deleted [Employee-8729]  as employee', '17:06:33', '2022-01-29', 'Saturday', 'Normal'),
+(35, 'EMPLOYER-0000', '[ADMIN]  William Cris added [Employee-9993] Kian as Employee', '17:18:42', '2022-01-29', 'Saturday', 'Normal');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin_accounts`
+--
+ALTER TABLE `admin_accounts`
+  ADD PRIMARY KEY (`adminID`),
+  ADD KEY `employeeData` (`employeeID`);
+
+--
+-- Indexes for table `employeeattendance`
+--
+ALTER TABLE `employeeattendance`
+  ADD PRIMARY KEY (`employeeAttendanceID`),
+  ADD KEY `employee` (`employeeID`);
+
+--
+-- Indexes for table `employee_accounts`
+--
+ALTER TABLE `employee_accounts`
+  ADD PRIMARY KEY (`employeeID`);
+
+--
+-- Indexes for table `employee_payout`
+--
+ALTER TABLE `employee_payout`
+  ADD PRIMARY KEY (`payoutID`),
+  ADD KEY `employee-payout` (`employeeID`);
+
+--
+-- Indexes for table `event_log`
+--
+ALTER TABLE `event_log`
+  ADD PRIMARY KEY (`eventID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin_accounts`
+--
+ALTER TABLE `admin_accounts`
+  MODIFY `adminID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `employeeattendance`
+--
+ALTER TABLE `employeeattendance`
+  MODIFY `employeeAttendanceID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `employee_accounts`
+--
+ALTER TABLE `employee_accounts`
+  MODIFY `employeeID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `employee_payout`
+--
+ALTER TABLE `employee_payout`
+  MODIFY `payoutID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `event_log`
+--
+ALTER TABLE `event_log`
+  MODIFY `eventID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
