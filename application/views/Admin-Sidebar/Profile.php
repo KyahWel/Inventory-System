@@ -88,29 +88,6 @@
 									</div>
 								</div>				
 							</div>
-                            <div class="d-flex stepButtons justify-content-end pt-5">
-									<div class="mx-2" id="editDiv" style="display: block;">
-										<button type="button" class="btn btn-sm ms-auto text-center text-black"
-											onclick="switchEdit()"
-											style="width: 5rem; background:#e8e8e9; border:none;">
-											Edit
-										</button>
-									</div>
-
-									<div class="mx-2" id="saveDiv" style="display: none;">
-										<button type="submit" class="btn btn-sm ms-auto text-center text-white"
-											style="width: 5rem; background:#303030; border:none;">
-											Save
-										</button>
-									</div>
-									<div class="mx-2" id="cancelDiv" style="display: none;">
-										<button type="submit" class="btn btn-sm ms-auto text-center text-black"
-											onclick="switchCancel()"
-											style="width: 5rem; background:#e8e8e9; border:none;">
-											Cancel
-										</button>
-									</div>
-								</div>
 						</form>
 					</div>
 				</div>

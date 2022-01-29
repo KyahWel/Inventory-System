@@ -74,14 +74,21 @@ class Employee extends CI_Model {
 		return $query->row();
 	}
 
-	public function updateData($id) #Update
+	public function getFileName($id) #Edit
+	{
+		$query = $this->db->query('SELECT * FROM `employee_accounts` WHERE `employeeID` ='.$id) ;
+		return $query->row();
+	}
+
+	public function updateData($id, $image) #Update
 	{
 		$data = array(
 			'firstname' => $_POST['firstname'],
 			'lastname' => $_POST['lastname'],
 			'age' => $_POST['age'],
 			'address' => $_POST['address'],
-			'position' => $_POST['position']
+			'position' => $_POST['position'],
+			'image_filename' => $image
 		);
 		$this->db->where('employeeID',$id);
 		$this->db->update('employee_accounts',$data);

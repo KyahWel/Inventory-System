@@ -34,20 +34,58 @@ class EmployeeFunctions extends CI_Controller {
 		$EmployeeData = $this->input->post('employeeData');
         $records = $this->Employee->getData($EmployeeData);
 		$output ='
-				<img src="../uploads/'.$records->image_filename.'"></img>
-				<p>First Name: '.$records->firstname.'</p>
-                <p>Last Name: '.$records->lastname.'</p>
-                <p>Age: '.$records->age.'</p>
-				<p>Address: '.$records->address.'</p>
-                <p>Position: '.$records->position.'</p>
-                <p>SSS Number: '.$records->sss_number.'</p>
-                <p>Pag-IBIG Number: '.$records->pagibig_number.'</p>
-                <p>PhilHealth Number: '.$records->philhealth_number.'</p>
-                <p>TIN Number: '.$records->tin_number.'</p>
-                <p>Employment Date: '.$records->employmentDate.'</p>
-                <div class="editAnnouncementButton d-flex justify-content-end">
-                    <button type="button" class="btn btn-success" value="submit" data-bs-dismiss="modal">Okay</button>
-                </div>
+			<div class="row">
+				<div class="col-4 text-white text-center row align-items-center">
+					<div>
+						<div><img src="../uploads/'.$records->image_filename.'" class="img-radius" alt="'.$records->firstname.'-Profile-Image"> </div>
+						<h5>'.$records->firstname.' '.$records->lastname.'</h5>
+						<p>'.$records->position.'</p>
+					</div>
+				</div>
+				<div class="col-8">
+					<h4 class="text-white m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Information</h4>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-4">
+								<h6 class="m-b-10 f-w-600 ">Age</h6>
+								<p class="text-muted f-w-400">'.$records->age.'</p>
+							</div>
+							<div class="col-sm-4">
+								<h6 class="m-b-10 f-w-600">Address</h6>
+								<p class="text-muted f-w-400">'.$records->address.'</p>
+							</div>
+							<div class="col-sm-4">
+								<h6 class="m-b-10 f-w-600">Employment Date</h6>
+								<p class="text-muted f-w-400">'.$records->employmentDate.'</p>
+							</div>
+						</div>
+					</div>
+					<br>
+					<h4 class="text-white m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Identification Numbers</h4><br>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">SSS Number</h6>
+								<p class="text-muted f-w-400">'.$records->sss_number.'</p>
+							</div>
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">Pag-IBIG Number</h6>
+								<p class="text-muted f-w-400">'.$records->pagibig_number.'</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">PhilHealth Number</h6>
+								<p class="text-muted f-w-400">'.$records->philhealth_number.'</p>
+							</div>
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">TIN Number</h6>
+								<p class="text-muted f-w-400">'.$records->tin_number.'</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		';
 		echo $output;
 	}
@@ -57,7 +95,13 @@ class EmployeeFunctions extends CI_Controller {
 		$EmployeeData = $this->input->post('employeeData');
         $records = $this->Employee->getData($EmployeeData); 
 		$output = '
-			<form action="../EmployeeFunctions/updateEmployee/'.$records->employeeID.'" method="POST">
+			<form action="../EmployeeFunctions/updateEmployee/'.$records->employeeID.'" method="POST" enctype="multipart/form-data">
+				<div class="upload">
+					<button class="uploadButton">
+						<input class="uploadButton1" type="file" name="image" id="image"><i class="bi bi-camera"></i>
+					</button>
+					<p>Update your photo: <br></p>
+				</div>
 				<div class="row">
 					<div class="col-6">
 						<p>First Name: <br><input type="text" class="form-control" value="'.$records->firstname.'" required name="firstname"></p>
@@ -93,8 +137,20 @@ class EmployeeFunctions extends CI_Controller {
 
 	public function updateEmployee($id)
 	{	
-		$this->Employee->updateData($id);
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png';
+		$records = $this->Employee->getFileName($id);
+
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('image')){
+			$oldfilename = "./uploads/".$records->image_filename;
+			unlink($oldfilename);
+			$this->Employee->updateData($id, $_FILES['image']['name']);
+        }else{
+            print_r($this->upload->display_errors());
+        }
 		redirect("Admin/Employee-List");
+		
 	}
 
 	public function deleteEmployee()
@@ -124,6 +180,9 @@ class EmployeeFunctions extends CI_Controller {
 
 	public function delete($id)
 	{	
+		$records = $this->Employee->getFileName($id);
+		$filename = "./uploads/".$records->image_filename;
+		unlink($filename);
 		$this->AdminModel->deleteAdminLinked($id);
 		$this->Employee->deleteData($id);
 		redirect("Admin/Employee-List");
