@@ -15,14 +15,6 @@
 					</div>
 			</div>
 		</div>
-		<div class="d-flex flex-row-reverse">
-			<select name="date" id="date">
-				<option value="" selected>--Please select a date--</option>
-				<?php foreach($eventDate as $row){?>
-					<option value="<?php echo $row->date?>"><?php echo $row->date?></option>
-				<?php } ?>	
-			</select>
-		</div>
 		<div class="table-responsive" >
 			<table id="mytable" class="table table borderless table-hover" >
 				<thead>
@@ -34,7 +26,7 @@
 				</thead>
 				<tbody >
 					<?php foreach($event as $row){?>
-						<tr href="#viewEvent" class="edit " data-toggle="modal">
+						<tr >
 							<td class="d-flex datetime border-bottom-0"><?php echo $row->day?></td>
 							<td class="d-flex datetime border-top-0 "><?php echo $row->date?></td>
 							<td><?php echo $row->event?> at <?php echo  date('h:i:s a', strtotime($row->time_happened)) ?></td><!--log info-->
@@ -93,5 +85,3 @@
 </main>
 <script src=<?php echo base_url("assets/js/bootstrap.bundle.min.js")?>></script>
 <script src=<?php echo base_url("assets/js/Eventlog.js")?>></script>
-
-<!-- create ajax pang view ng events per date -->

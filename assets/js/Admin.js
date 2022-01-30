@@ -11,3 +11,5 @@ var time = hour + ":" + minute + ":" + seconds
 
 document.getElementById('date').value = date;
 document.getElementById('time').value = time;
+
+

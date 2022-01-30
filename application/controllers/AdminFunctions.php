@@ -7,12 +7,15 @@ class AdminFunctions extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('AdminModel');
+		$this->load->model('EventLog');
+		$this->load->helper('security');
 	}
 
 	public function addAdmin()
 	{
 		if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['employeeID'])){
-			$this->AdminModel->insertData();
+			$data = $this->security->xss_clean($this->input->post());
+			$this->AdminModel->insertData($data);
 			redirect('Admin/Admin-List');
 		}
 	}
@@ -81,7 +84,8 @@ class AdminFunctions extends CI_Controller {
 
 	public function updateAdmin($id)
 	{	
-		$this->AdminModel->updateData($id);
+		$data = $this->security->xss_clean($this->input->post());
+		$this->AdminModel->updateData($id,$data);
 		redirect("Admin/Admin-List");
 	}
 
@@ -96,4 +100,6 @@ class AdminFunctions extends CI_Controller {
 	{	
 		$this->AdminModel->changePassword($id);
 	}
+
+	
 }

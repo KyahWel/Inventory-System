@@ -6,6 +6,18 @@
 <main class="mt-5">
 	<div class="main-div rounded">
 		<div class="container bootstrap snippet">
+			<?php if($this->session->flashdata('adminError')) : ?>
+			<div class="alert alert-danger alert-dismissible fade show">
+				<?= $this->session->flashdata('adminError'); ?>
+				<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+			</div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('successAdmin')) : ?>
+			<div class="alert alert-success alert-dismissible fade show">
+				<?= $this->session->flashdata('successAdmin'); ?>
+				<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+			</div>
+			<?php endif; ?>
 			<div class=" container d-flex flex-row col-lg-12 col-sm-6">
 				<div class="col-lg-3 col-sm-6">
 					<div class="circle-tile ">
@@ -26,7 +38,7 @@
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded"> SSS Contribution <br> [Employer + Employee]
 							</div>
-							<div class="circle-tile-number text-faded ">PHP 30,000</div>
+							<div class="circle-tile-number text-faded ">PHP <?php echo $sss?></div>
 						</div>
 					</div>
 				</div>
@@ -37,7 +49,7 @@
 						</div>
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded">Philhealth Contribution <br> [Employer + Employee]</div>
-							<div class="circle-tile-number text-faded ">PHP 30,000</div>
+							<div class="circle-tile-number text-faded ">PHP <?php echo $philhealth?></div>
 
 						</div>
 					</div>
@@ -48,7 +60,7 @@
 								src="<?php echo base_url("assets/images/pg.png")?>" alt="SSS Logo"></div>
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded">Pag Ibig Contribution <br> [Employer + Employee]</div>
-							<div class="circle-tile-number text-faded ">PHP <?php echo $employee*100?></div>
+							<div class="circle-tile-number text-faded ">PHP <?php echo $pagibig?></div>
 						</div>
 					</div>
 				</div>
@@ -209,19 +221,19 @@
 					label: 'SSS',
 
 					borderColor: 'rgba(255,99,132,1)',
-					data: [0, 3000, 4000, 2000, 5000, 8000, 9000, 2000, 2000, 5000, 8000, 9000, 2000],
+					data: [0, <?php echo $sss?>],
 				},
 				{
 					label: 'Philhealth',
 
 					borderColor: 'rgba(54, 162, 235, 1)',
-					data: [0, 1000, 2000, 6000, 4000, 6000, 7000, 3000, 3500, 6000, 5000, 7000, 4000],
+					data: [0, <?php echo $philhealth?>],
 				},
 				{
 					label: 'PagIbig',
 
 					borderColor: 'rgba(255, 206, 86, 1)',
-					data: [0, 2000, 3000, 4000, 6000, 4000, 8000, 5000, 4500, 7000, 6000, 8000, 5000],
+					data: [0, <?php echo $pagibig?>],
 				}
 			]
 		},
@@ -243,7 +255,7 @@
 			labels: ["SSS", "PAGIBIG", " PHILHEALTH"],
 			datasets: [{
 				backgroundColor: ["#b91d47", "#00aba9", "#2b5797"],
-				data: [3000, 4000, 2000],
+				data: [<?php echo $sss?>, <?php echo $pagibig?>, <?php echo $philhealth?>],
 			}]
 		},
 		options: {

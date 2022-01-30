@@ -7,7 +7,23 @@
 </head>
 <main class="page-content">
 	<div style="margin-left: 20vw; width: 78.5vw;">
+		
 		<div class="">
+			<?php if($this->session->flashdata('adminAccountError')) : ?>
+				<div class="alert alert-danger alert-dismissible fade show">
+					<?= $this->session->flashdata('adminAccountError'); ?>
+					<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+					<br>
+				</div>
+				
+			<?php endif; ?>
+			<?php if($this->session->flashdata('adminAccountSuccess')) : ?>
+				<div class="alert alert-success alert-dismissible fade show">
+					<?= $this->session->flashdata('adminAccountSuccess'); ?>
+					<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+					<br>
+				</div>
+			<?php endif; ?>
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
@@ -107,7 +123,7 @@
 						</div>
 						<div class="form-group">
 							<label class=" text-faded">Password</label>
-							<input type="password" class="form-control" name="password" required>
+							<input type="password" class="form-control" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required > 
 						</div>
 					</div>
 					<div class="editAnnouncementButton d-flex justify-content-end p-3">

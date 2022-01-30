@@ -8,9 +8,22 @@
 
 <!-- sidebar-wrapper  -->
 <main class="page-content">
+		
 	<div>
 		<!-- TABLE -->
 		<div style="margin-left: 20vw; width: 73.5vw;">
+			<?php if($this->session->flashdata('employeeError')) : ?>
+				<div class="alert alert-danger alert-dismissible fade show">
+					<?= $this->session->flashdata('employeeError'); ?>
+					<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+				</div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('employeeSuccess')) : ?>
+				<div class="alert alert-success alert-dismissible fade show">
+					<?= $this->session->flashdata('employeeSuccess'); ?>
+					<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+				</div>
+			<?php endif; ?>
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
@@ -81,7 +94,7 @@
 								enctype="multipart/form-data">
 								<div class="upload">
 									<button class="uploadButton">
-										<input class="uploadButton1" type="file" name="image" id="image">
+										<input class="uploadButton1" type="file" name="image" id="image" required>
 										<i class="bi bi-camera"></i>
 									</button>
 									<p>Upload your photo: <br></p>
@@ -89,10 +102,10 @@
 								<div class="row">
 									<div class="col-6">
 										<p>First Name: <br><input type="text" class="form-control" required
-												name="firstname"></p>
+												name="firstname" onkeypress="return /[a-z]/i.test(event.key)"></p>
 										<p>Last Name: <br><input type="text" class="form-control" required
-												name="lastname"></p>
-										<p>Age: <br><input type="text" class="form-control" required name="age"></p>
+												name="lastname" onkeypress="return /[a-z]/i.test(event.key)"></p>
+										<p>Age: <br><input type="number" class="form-control" required name="age" min="18" title="Employee must be age 18+"></p>
 										<p>Address: <br><input type="text" class="form-control" required name="address">
 										</p>
 										<p>Position:
@@ -106,13 +119,13 @@
 										</p>
 									</div>
 									<div class="col-6">
-										<p>SSS Number: <br><input type="text" class="form-control" required
+										<p>SSS Number: <br><input type="number" class="form-control" required
 												name="sss-number"></p>
-										<p>Pag-IBIG Number: <br><input type="text" class="form-control" required
+										<p>Pag-IBIG Number: <br><input type="number" class="form-control" required
 												name="pagibig-number"></p>
-										<p>PhilHealth Number: <br><input type="text" class="form-control" required
+										<p>PhilHealth Number: <br><input type="number" class="form-control" required
 												name="philhealth-number"></p>
-										<p>TIN Number: <br><input type="text" class="form-control" required
+										<p>TIN Number: <br><input type="number" class="form-control" required
 												name="tin-number"></p>
 										<p>Employment Date: <br><input type="date" class="form-control" required
 												name="employmentDate"></p><br>
@@ -222,7 +235,7 @@
 					employeeData: employeeData
 				},
 				success: function (data) {
-					$('#delete_employee').html(data);
+					$('#delete_employee').html(data);vc 
 				}
 			});
 		});

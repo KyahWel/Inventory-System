@@ -15,6 +15,9 @@ class Admin extends CI_Controller{
 	public function Dashboard()
 	{	
 		$data['employee'] = $this->Employee->countEmployee();
+		$data['sss'] = $this->Employee->totalSSS();
+		$data['pagibig'] = $this->Employee->totalPagibig();
+		$data['philhealth'] = $this->Employee->totalPhilhealth();
 		$data['logs'] = $this->Employee->viewEmployeeLogs(date("Y-m-d"));
 		$data['data'] = $this->Employee->viewData();
 		$this->load->view('Header');

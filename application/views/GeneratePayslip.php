@@ -60,31 +60,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
 </head>
 <body>
+    <?php foreach($Employee as $row){?>
     <div>
         <h2>Prime Lamination Inc. Payslip</h2>
         <table>
             <tbody>
                 <tr>
                     <td class="title">Company</td>
-                    <td class="content">gago</td>
+                    <td class="content">Prime Laminations Inc.</td>
                     <td class="title">Employee Name</td>
-                    <td class="content">tangina</td>
+                    <td class="content"><?php echo $row->firstname?> <?php echo $row->lastname?></td>
                 </tr>
                 <tr>
                     <td class="title">Payment Date</td>
-                    <td class="content"></td>
+                    <td class="content"><?php echo date('Y-m-d', strtotime('saturday this week'))?></td>
                     <td class="title">Position</td>
-                    <td class="content"></td>
+                    <td class="content"><?php echo $row->position?></td>
                 </tr>
                 <tr>
                     <td class="title">Payment Method</td>
-                    <td class="content"></td>
+                    <td class="content">Cash</td>
                     <td class="title">Employee Number</td>
-                    <td class="content"></td>
+                    <td class="content"><?php echo $row->employeeNumber?></td>
                 </tr>
             </tbody>
         </table>
-        <p><note>Note:</note> Sunday rate is considered as overtime.</p>
+        <p><note>Note:</note> Sunday rate is 30% more.</p>
         <table>
             <thead>
                 <tr>
@@ -100,73 +101,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <tr>
                     <td class="tableContent tableHead-description-year">Monday</td>
                     <td class="tableContent">537</td>
-                    <td class="tableContent">2</td>
-                    <td class="tableContent">1</td>
+                    <td class="tableContent">0</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">5000</td>
+                    <td class="tableContent tableHead-day-amount">537</td>
                     
                 </tr>
                 <tr>
                     <td class="tableContent tableHead-description-year">Tuesday</td>
                     <td class="tableContent">537</td>
-                    <td class="tableContent">1</td>
-                    <td class="tableContent">2</td>
+                    <td class="tableContent">0</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
+                    <td class="tableContent tableHead-day-amount">537</td>
                     
                 </tr>
                 <tr>
                     <td class="tableContent tableHead-description-year">Wednesday</td>
                     <td class="tableContent">537</td>
-                    <td class="tableContent">3</td>
-                    <td class="tableContent">3</td>
+                    <td class="tableContent">0</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
+                    <td class="tableContent tableHead-day-amount">537</td>
                     
                 </tr>
                 <tr>
-                    <td class="tableContent tableHead-description-year">Tdursday</td>
+                    <td class="tableContent tableHead-description-year">Thursday</td>
                     <td class="tableContent">537</td>
-                    <td class="tableContent">4</td>
-                    <td class="tableContent">4</td>
+                    <td class="tableContent">0</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
+                    <td class="tableContent tableHead-day-amount">537</td>
                     
                 </tr>
                 <tr>
                     <td class="tableContent tableHead-description-year">Friday</td>
                     <td class="tableContent">537</td>
-                    <td class="tableContent">5</td>
-                    <td class="tableContent">5</td>
+                    <td class="tableContent">0</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
+                    <td class="tableContent tableHead-day-amount">537</td>
                     
                 </tr>
                 <tr>
                     <td class="tableContent tableHead-description-year">Saturday</td>
                     <td class="tableContent">537</td>
-                    <td class="tableContent">6</td>
-                    <td class="tableContent">6</td>
+                    <td class="tableContent">0</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
+                    <td class="tableContent tableHead-day-amount">537</td>
                     
                 </tr>
                 <tr>
                     <td class="tableContent tableHead-description-year">Sunday</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent">10</td>
+                    <td class="tableContent">698.10</td>
+                    <td class="tableContent">0</td>
                     <td class="tableContent">0</td>
                     <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
+                    <td class="tableContent tableHead-day-amount">698.10</td>
                    
                 </tr>
                 <tr>
                     <td class="tableContent tableHead tableHead-description-year">Total</td>
-                    <td class="tableContent tableHead">3222</td>
-                    <td class="tableContent tableHead">31</td>
-                    <td class="tableContent tableHead">21</td>
-                    <td class="tableContent tableHead">300</td>
-                    <td class="tableContent tableHead tableHead-day-amount">5000</td>
+                    <td class="tableContent tableHead">3920.10</td>
+                    <td class="tableContent tableHead">0</td>
+                    <td class="tableContent tableHead">0</td>
+                    <td class="tableContent tableHead">0</td>
+                    <td class="tableContent tableHead tableHead-day-amount">3920.10</td>
                     
                 </tr>
             </tbody>
@@ -182,126 +183,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
     <hr>
-    <div>
-        <h2>Prime Lamination Inc. Payslip</h2>
-        <table>
-            <tbody>
-                <tr>
-                    <td class="title">Company</td>
-                    <td class="content">gago</td>
-                    <td class="title">Employee Name</td>
-                    <td class="content">tangina</td>
-                </tr>
-                <tr>
-                    <td class="title">Payment Date</td>
-                    <td class="content"></td>
-                    <td class="title">Position</td>
-                    <td class="content"></td>
-                </tr>
-                <tr>
-                    <td class="title">Payment Method</td>
-                    <td class="content"></td>
-                    <td class="title">Employee Number</td>
-                    <td class="content"></td>
-                </tr>
-            </tbody>
-        </table>
-        <p><note>Note:</note> Sunday rate is considered as overtime.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th class="tableHead tableHead-day-amount">Day</th>
-                    <th class="tableHead">Rate (Php.)</th>
-                    <th class="tableHead">Overtime (Hrs.)</th>
-                    <th class="tableHead">Late (Hrs.)</th>
-                    <th class="tableHead">Deduction (Php.)</th>
-                    <th class="tableHead tableHead-day-amount">Total Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Monday</td>
-                    <td class="tableContent">537</td>
-                    <td class="tableContent">2</td>
-                    <td class="tableContent">1</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">5000</td>
-                    
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Tuesday</td>
-                    <td class="tableContent">537</td>
-                    <td class="tableContent">1</td>
-                    <td class="tableContent">2</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
-                    
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Wednesday</td>
-                    <td class="tableContent">537</td>
-                    <td class="tableContent">3</td>
-                    <td class="tableContent">3</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
-                    
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Tdursday</td>
-                    <td class="tableContent">537</td>
-                    <td class="tableContent">4</td>
-                    <td class="tableContent">4</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
-                    
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Friday</td>
-                    <td class="tableContent">537</td>
-                    <td class="tableContent">5</td>
-                    <td class="tableContent">5</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
-                    
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Saturday</td>
-                    <td class="tableContent">537</td>
-                    <td class="tableContent">6</td>
-                    <td class="tableContent">6</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
-                    
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead-description-year">Sunday</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent">10</td>
-                    <td class="tableContent">0</td>
-                    <td class="tableContent"></td>
-                    <td class="tableContent tableHead-day-amount">12</td>
-                   
-                </tr>
-                <tr>
-                    <td class="tableContent tableHead tableHead-description-year">Total</td>
-                    <td class="tableContent tableHead">3222</td>
-                    <td class="tableContent tableHead">31</td>
-                    <td class="tableContent tableHead">21</td>
-                    <td class="tableContent tableHead">300</td>
-                    <td class="tableContent tableHead tableHead-day-amount">5000</td>
-                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <br><br>
-    <div class="signature">
-        <div class="releaseBy">
-            <p>Released by: <br><b>Prime Lamination Inc.</b></p>
-        </div>
-        <div class="employeeSignature">
-            <p>_________________________________<br>Employer's Signature over Printed Name</p>
-        </div>
-    </div>
+    <?php } ?>
 </body>
 </html>

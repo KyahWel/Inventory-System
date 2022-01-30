@@ -9,33 +9,33 @@ class AdminModel extends CI_Model {
 
 
 
-	public function insertData() #Create
+	public function insertData($filtered) #Create
 	{	
 		
 		$this->db->select('*');
 		$this->db->from('admin_accounts');
-		$this->db->where('employeeID',$_POST['employeeID']);
+		$this->db->where('employeeID',$filtered['employeeID']);
 		$queryChecker=$this->db->get();
 		print_r($_POST['employeeID']);
 		if($queryChecker->num_rows()==0){
 			$this->db->select('*');
 			$this->db->from('admin_accounts');
-			$this->db->where('username',$_POST['username']);
+			$this->db->where('username',$filtered['username']);
 			$query=$this->db->get();	
 			if($query->num_rows()==0){
 				$data = array(
 					'adminID' => NULL,
-					'username' => $_POST['username'],
-					'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
-					'employeeID' => $_POST['employeeID'],
+					'username' => $filtered['username'],
+					'password' => password_hash($filtered['password'],PASSWORD_DEFAULT),
+					'employeeID' => $filtered['employeeID'],
 					'dateAdded' => date("Y/m/d"),
 					'timeAdded' => date("H:i:s")
 				);
 				$this->db->insert('admin_accounts',$data);
-				$this->session->set_flashdata('adminSuccess','Added new admin successfully'); 
+				$this->session->set_flashdata('adminAccountSuccess','Added new admin successfully'); 
 				$this->db->select('*');
 				$this->db->from('employee_accounts');
-				$this->db->where('employeeID',$_POST['employeeID']);
+				$this->db->where('employeeID',$filtered['employeeID']);
 				$queryCheckerA=$this->db->get();
 				$queryCheckerA = $queryCheckerA->row();
 				$record = array(
@@ -49,14 +49,15 @@ class AdminModel extends CI_Model {
 				);
 				$this->db->insert('event_log',$record);
 				unset($_POST);
+				redirect('Admin/Admin-List');
 			}else{
-				$this->session->set_flashdata('adminError','User already exists'); 
-				redirect('Admin/Dashboard');
+				$this->session->set_flashdata('adminAccountError','User already exists'); 
+				redirect('Admin/Admin-List');
 			}
 		}
 		else{
-			$this->session->set_flashdata('adminError','User already exists'); 
-				redirect('Admin/Dashboard');
+			$this->session->set_flashdata('adminAccountError','User already exists'); 
+				redirect('Admin/Admin-List');
 		}
 	}
 
@@ -77,10 +78,10 @@ class AdminModel extends CI_Model {
 		return $query->row();
 	}
 
-	public function updateData($id) #Edit
+	public function updateData($id,$filtered) #Edit
 	{
 		$data = array(
-			'username' => $_POST['username'],
+			'username' => $filtered['username'],
 		);
 		$this->db->where('adminID',$id);
 		$this->db->update('admin_accounts',$data);
@@ -115,22 +116,7 @@ class AdminModel extends CI_Model {
 		$this->db->delete('admin_accounts');
 	}
 
-	public function deleteAdminLinked($id){ #Delete
-		$query = $this->db->query('SELECT * FROM `admin_accounts` LEFT JOIN `employee_accounts` ON `admin_accounts`.employeeID = `employee_accounts`.employeeID WHERE adminID ='.$id);
-		$query = $query->row();
-		$record = array(
-			'eventID' => NULL,
-			'user' => $this->session->userdata('auth_user')['employeeNumber'],
-			'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." deleted [".$query->employeeNumber."] ".$query->firstname." as Employee",
-			'time_happened' => date("H:i:s"),
-			'date' => date("Y-m-d"),
-			'day' => date("l"),
-			'threatlevel' => "Normal"
-		);
-		$this->db->insert('event_log',$record);
-		$this->db->where('employeeID',$id);
-		$this->db->delete('admin_accounts');
-	}
+
 
 	public function login(){
 		$username = $_POST['username'];
@@ -194,7 +180,6 @@ class AdminModel extends CI_Model {
 
 	public function changePassword($id) #Changepassword
 	{	
-		
 			if(password_verify($_POST['oldpass'],$this->session->userdata('auth_user')['password'])){
 				$newPassword = $_POST['newpass'];
 				$confirmPassword = $_POST['confirmpass'];
@@ -207,21 +192,52 @@ class AdminModel extends CI_Model {
 						$newdata = array(
 							'password' => password_hash($newPassword,PASSWORD_DEFAULT)
 						);
-						$this->db->where('adminID',$id);
 						$this->db->update('admin_accounts',$newdata);
-						$this->session->set_flashdata('successAdmin','Password changed successfully'); 
+						$this->db->where('adminID',$id);
+						$this->session->set_flashdata('successAdmin',"Password changed successfully"); 
+						$record = array(
+							'eventID' => NULL,
+							'user' => $this->session->userdata('auth_user')['employeeNumber'],
+							'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." changed password",
+							'time_happened' => date("H:i:s"),
+							'date' => date("Y-m-d"),
+							'day' => date("l"),
+							'threatlevel' => "Normal"
+						);
+						$this->db->insert('event_log',$record);
 						redirect('Admin/Dashboard');
 					}
 					else
 						$this->session->set_flashdata('adminError','Passwords do not match, Please try again'); 
+						$record = array(
+							'eventID' => NULL,
+							'user' => $this->session->userdata('auth_user')['employeeNumber'],
+							'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." change password failed",
+							'time_happened' => date("H:i:s"),
+							'date' => date("Y-m-d"),
+							'day' => date("l"),
+							'threatlevel' => "Warning"
+						);
+						$this->db->insert('event_log',$record);
 						redirect('Admin/Dashboard');	
 				}
 			}
 			else{
 				$this->session->set_flashdata('adminError','Incorrect Old Password'); 
+				$record = array(
+					'eventID' => NULL,
+					'user' => $this->session->userdata('auth_user')['employeeNumber'],
+					'event' => "[ADMIN] ".$this->session->userdata('auth_user')['firstname']." changed password but failed",
+					'time_happened' => date("H:i:s"),
+					'date' => date("Y-m-d"),
+					'day' => date("l"),
+					'threatlevel' => "Danger"
+				);
+				$this->db->insert('event_log',$record);
 				redirect('Admin/Dashboard');	
 			} 	
 		
 	}
+
 	
 }

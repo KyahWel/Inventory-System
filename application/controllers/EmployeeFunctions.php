@@ -9,6 +9,7 @@ class EmployeeFunctions extends CI_Controller {
 		$this->load->model('Employee');
 		$this->load->model('EmployeeAttendance');
 		$this->load->model('AdminModel');
+		$this->load->helper('security');
 	}
 
 	public function addEmployee()
@@ -16,15 +17,18 @@ class EmployeeFunctions extends CI_Controller {
 		if(isset($_POST['sss-number']) && isset($_POST['pagibig-number']) && isset($_POST['firstname']) && isset($_POST['lastname'])){
 			$config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'jpg|png';
-
+			
             $this->load->library('upload', $config);
             if($this->upload->do_upload('image')){
-                $this->Employee->insertData($_FILES['image']['name']);
+				$data = $this->security->xss_clean($this->input->post());
+                $this->Employee->insertData($_FILES['image']['name'],$data);
+				$this->session->set_flashdata('employeeSuccess','Added Employee Successfully'); 
             }else{
-                print_r($this->upload->display_errors());
-            }
+				$this->session->set_flashdata('employeeError','Error adding employee'); 
 			
+            }
 		}
+		redirect("Admin/Employee-List");
 		
 	}
 
@@ -145,9 +149,12 @@ class EmployeeFunctions extends CI_Controller {
         if($this->upload->do_upload('image')){
 			$oldfilename = "./uploads/".$records->image_filename;
 			unlink($oldfilename);
-			$this->Employee->updateData($id, $_FILES['image']['name']);
+			$data = $this->security->xss_clean($this->input->post());
+			$this->Employee->updateData($id,$data, $_FILES['image']['name']);
+			$this->session->set_flashdata('employeeSuccess','Updated employee details successfully'); 
         }else{
-            print_r($this->upload->display_errors());
+            $this->session->set_flashdata('employeeError','Failed updatingemployee details'); 
+		
         }
 		redirect("Admin/Employee-List");
 		
@@ -174,24 +181,17 @@ class EmployeeFunctions extends CI_Controller {
 			</form>
 		';
 		echo $output;
+		
 	}
-
-	
 
 	public function delete($id)
 	{	
 		$records = $this->Employee->getFileName($id);
 		$filename = "./uploads/".$records->image_filename;
 		unlink($filename);
-		$this->AdminModel->deleteAdminLinked($id);
 		$this->Employee->deleteData($id);
+		$this->session->set_flashdata('employeeSuccess','Deleted employee details successfully'); 
 		redirect("Admin/Employee-List");
-	}
-
-
-	public function changePass($id)
-	{	
-		$this->EmployeeModel->changePassword($id);
 	}
 	
 	public function timeIn(){
@@ -204,6 +204,18 @@ class EmployeeFunctions extends CI_Controller {
 		$employeeData = $this->input->post('employeeNumber');
 		$this->EmployeeAttendance->timeOut($employeeData);
 		redirect('Employee');
+	}
+
+	public function updateContribution(){
+
+		if(isset($_POST['sssEmployee']) && isset($_POST['philhealthEmployee']) && isset($_POST['pagibigEmployee']) && isset($_POST['sssEmployer']) && isset($_POST['philhealthEmployer']) && isset($_POST['pagibigEmployer'])){
+		$this->Employee->updateContribution();
+		$this->session->set_flashdata('payrollSuccess','Updated Contribution Successfully');
+		}
+		else{
+			$this->session->set_flashdata('payrollError','Failed on updating contribution');	
+		} 
+		redirect("Admin/Payroll");
 	}
 }
 
