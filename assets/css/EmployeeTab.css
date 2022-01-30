@@ -83,6 +83,11 @@ table.table td a.edit {
 table.table td a.delete {
 	color: #F44336;
 }
+
+table.table td a.deleteDisabled {
+	color:gray;
+}
+
 table.table td i {
 	font-size: 19px;
 }
@@ -121,3 +126,40 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+
+a.disabled {
+	pointer-events: none;
+	cursor: default;
+}
+img{
+	height: 150px;
+	width: 150px;
+	border: 2px solid white;
+	border-radius: 50%;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+/* IMAGE UPLOAD */
+.upload{
+	text-align: center;
+}
+.uploadButton{
+	height: 100px;
+	width: 100px;
+	font-size: 3rem;
+	position: relative;
+	border: none;
+	border-radius: 50%;
+	
+}
+
+.uploadButton1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer;
+}

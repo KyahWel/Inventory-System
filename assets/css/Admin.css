@@ -93,6 +93,15 @@ table.table td a.edit {
 table.table td a.delete {
 	color: #F44336;
 }
+
+table.table td a.deleteDisabled {
+	color:gray;
+}
+
+table.table td a.editDisabled {
+	color:gray;
+}
+
 table.table td i {
 	font-size: 19px;
 }
@@ -133,3 +142,8 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+
+a.disabled {
+	pointer-events: none;
+	cursor: default;
+  }

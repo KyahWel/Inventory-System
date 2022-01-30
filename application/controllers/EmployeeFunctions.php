@@ -8,33 +8,88 @@ class EmployeeFunctions extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Employee');
 		$this->load->model('EmployeeAttendance');
+		$this->load->model('AdminModel');
+		$this->load->helper('security');
 	}
 
 	public function addEmployee()
 	{
 		if(isset($_POST['sss-number']) && isset($_POST['pagibig-number']) && isset($_POST['firstname']) && isset($_POST['lastname'])){
-			$this->Employee->insertData();
+			$config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'jpg|png';
+			
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload('image')){
+				$data = $this->security->xss_clean($this->input->post());
+                $this->Employee->insertData($_FILES['image']['name'],$data);
+				$this->session->set_flashdata('employeeSuccess','Added Employee Successfully'); 
+            }else{
+				$this->session->set_flashdata('employeeError','Error adding employee'); 
+			
+            }
 		}
+		redirect("Admin/Employee-List");
+		
 	}
+
 	public function viewEmployee()
 	{	
 		// Setup Ajax
 		$EmployeeData = $this->input->post('employeeData');
         $records = $this->Employee->getData($EmployeeData);
 		$output ='
-				<p>First Name: '.$records->firstname.'</p>
-                <p>Last Name: '.$records->lastname.'</p>
-                <p>Age: '.$records->age.'</p>
-				<p>Address: '.$records->address.'</p>
-                <p>Position: '.$records->position.'</p>
-                <p>SSS Number: '.$records->sss_number.'</p>
-                <p>Pag-IBIG Number: '.$records->pagibig_number.'</p>
-                <p>PhilHealth Number: '.$records->philhealth_number.'</p>
-                <p>TIN Number: '.$records->tin_number.'</p>
-                <p>Employment Date: '.$records->employmentDate.'</p>
-                <div class="editAnnouncementButton d-flex justify-content-end">
-                    <button type="button" class="btn btn-success" value="submit" data-bs-dismiss="modal">Okay</button>
-                </div>
+			<div class="row">
+				<div class="col-4 text-white text-center row align-items-center">
+					<div>
+						<div><img src="../uploads/'.$records->image_filename.'" class="img-radius" alt="'.$records->firstname.'-Profile-Image"> </div>
+						<h5>'.$records->firstname.' '.$records->lastname.'</h5>
+						<p>'.$records->position.'</p>
+					</div>
+				</div>
+				<div class="col-8">
+					<h4 class="text-white m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Information</h4>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-4">
+								<h6 class="m-b-10 f-w-600 ">Age</h6>
+								<p class="text-muted f-w-400">'.$records->age.'</p>
+							</div>
+							<div class="col-sm-4">
+								<h6 class="m-b-10 f-w-600">Address</h6>
+								<p class="text-muted f-w-400">'.$records->address.'</p>
+							</div>
+							<div class="col-sm-4">
+								<h6 class="m-b-10 f-w-600">Employment Date</h6>
+								<p class="text-muted f-w-400">'.$records->employmentDate.'</p>
+							</div>
+						</div>
+					</div>
+					<br>
+					<h4 class="text-white m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Identification Numbers</h4><br>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">SSS Number</h6>
+								<p class="text-muted f-w-400">'.$records->sss_number.'</p>
+							</div>
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">Pag-IBIG Number</h6>
+								<p class="text-muted f-w-400">'.$records->pagibig_number.'</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">PhilHealth Number</h6>
+								<p class="text-muted f-w-400">'.$records->philhealth_number.'</p>
+							</div>
+							<div class="col-sm-6">
+								<h6 class="m-b-10 f-w-600">TIN Number</h6>
+								<p class="text-muted f-w-400">'.$records->tin_number.'</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		';
 		echo $output;
 	}
@@ -44,7 +99,13 @@ class EmployeeFunctions extends CI_Controller {
 		$EmployeeData = $this->input->post('employeeData');
         $records = $this->Employee->getData($EmployeeData); 
 		$output = '
-			<form action="../EmployeeFunctions/updateEmployee/'.$records->employeeID.'" method="POST">
+			<form action="../EmployeeFunctions/updateEmployee/'.$records->employeeID.'" method="POST" enctype="multipart/form-data">
+				<div class="upload">
+					<button class="uploadButton">
+						<input class="uploadButton1" type="file" name="image" id="image"><i class="bi bi-camera"></i>
+					</button>
+					<p>Update your photo: <br></p>
+				</div>
 				<div class="row">
 					<div class="col-6">
 						<p>First Name: <br><input type="text" class="form-control" value="'.$records->firstname.'" required name="firstname"></p>
@@ -80,8 +141,23 @@ class EmployeeFunctions extends CI_Controller {
 
 	public function updateEmployee($id)
 	{	
-		$this->Employee->updateData($id);
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png';
+		$records = $this->Employee->getFileName($id);
+
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('image')){
+			$oldfilename = "./uploads/".$records->image_filename;
+			unlink($oldfilename);
+			$data = $this->security->xss_clean($this->input->post());
+			$this->Employee->updateData($id,$data, $_FILES['image']['name']);
+			$this->session->set_flashdata('employeeSuccess','Updated employee details successfully'); 
+        }else{
+            $this->session->set_flashdata('employeeError','Failed updatingemployee details'); 
+		
+        }
 		redirect("Admin/Employee-List");
+		
 	}
 
 	public function deleteEmployee()
@@ -105,18 +181,17 @@ class EmployeeFunctions extends CI_Controller {
 			</form>
 		';
 		echo $output;
+		
 	}
 
 	public function delete($id)
-	{
-		$this->Employee->deleteData($id);
-		redirect("Admin/Employee-List");
-	}
-
-
-	public function changePass($id)
 	{	
-		$this->EmployeeModel->changePassword($id);
+		$records = $this->Employee->getFileName($id);
+		$filename = "./uploads/".$records->image_filename;
+		unlink($filename);
+		$this->Employee->deleteData($id);
+		$this->session->set_flashdata('employeeSuccess','Deleted employee details successfully'); 
+		redirect("Admin/Employee-List");
 	}
 	
 	public function timeIn(){
@@ -129,6 +204,18 @@ class EmployeeFunctions extends CI_Controller {
 		$employeeData = $this->input->post('employeeNumber');
 		$this->EmployeeAttendance->timeOut($employeeData);
 		redirect('Employee');
+	}
+
+	public function updateContribution(){
+
+		if(isset($_POST['sssEmployee']) && isset($_POST['philhealthEmployee']) && isset($_POST['pagibigEmployee']) && isset($_POST['sssEmployer']) && isset($_POST['philhealthEmployer']) && isset($_POST['pagibigEmployer'])){
+		$this->Employee->updateContribution();
+		$this->session->set_flashdata('payrollSuccess','Updated Contribution Successfully');
+		}
+		else{
+			$this->session->set_flashdata('payrollError','Failed on updating contribution');	
+		} 
+		redirect("Admin/Payroll");
 	}
 }
 

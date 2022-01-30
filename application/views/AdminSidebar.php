@@ -110,21 +110,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="modal-body">
 					<button type="button" class="close text-faded" data-dismiss="modal" aria-label="Close">&times;</button>
 					<div class="form-group">
-						<form action="#" method="POST" name="signupForm" id="signupForm">
+						<form action="../AdminFunctions/changePass/<?= $this->session->userdata('auth_user')['adminID']?>" method="POST" name="signupForm" id="signupForm">
 							<h2 class="formTitle text-faded">
 								Change Password
 							</h2>
 							<div class="inputDiv">
 								<label class="inputLabel text-faded" for="password">Current Password</label>
-								<input type="password"  name="currentpass"  required>
+								<input type="password"  name="oldpass"  required>
 							</div>
 							<div class="inputDiv">
 								<label class="inputLabel text-faded" for="password">New Password</label>
-								<input type="password" name="newpass" id="newpassword"  required>
+								<input type="password" name="newpass" id="newpassword"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
 							</div>
 							<div class="inputDiv">
 								<label class="inputLabel text-faded" for="confirmPassword">Confirm Password</label>
-								<input type="password" name="confirmpass" id="confirmpassword" required>
+								<input type="password" name="confirmpass" id="confirmpassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
 
 							</div>
 							<div class="buttonWrapper">

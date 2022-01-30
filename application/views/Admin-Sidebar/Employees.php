@@ -8,9 +8,22 @@
 
 <!-- sidebar-wrapper  -->
 <main class="page-content">
+		
 	<div>
 		<!-- TABLE -->
 		<div style="margin-left: 20vw; width: 73.5vw;">
+			<?php if($this->session->flashdata('employeeError')) : ?>
+				<div class="alert alert-danger alert-dismissible fade show">
+					<?= $this->session->flashdata('employeeError'); ?>
+					<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+				</div>
+			<?php endif; ?>
+			<?php if($this->session->flashdata('employeeSuccess')) : ?>
+				<div class="alert alert-success alert-dismissible fade show">
+					<?= $this->session->flashdata('employeeSuccess'); ?>
+					<button type="button" class="btn-close close" data-bs-dismiss="alert"></button>
+				</div>
+			<?php endif; ?>
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
@@ -34,9 +47,11 @@
 					</thead>
 					<tbody>
 						<?php foreach($employee as $row){?>
+						<?php if($row->position != "Employer"): ?>
 						<tr>
-							<td> <a class="view_employee" style="cursor: pointer;" data-id="<?php echo $row->employeeID?>" id="viewEmployee"
-									data-bs-toggle="modal" data-bs-target="#viewEmployeeModal">
+							<td> <a class="view_employee" style="cursor: pointer;"
+									data-id="<?php echo $row->employeeID?>" id="viewEmployee" data-bs-toggle="modal"
+									data-bs-target="#viewEmployeeModal">
 									<?php echo $row->employeeNumber?>
 								</a></td>
 							<td><?php echo $row->firstname?></td>
@@ -44,11 +59,16 @@
 							<td><?php echo $row->position?></td>
 							<td>
 								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i
-									class="material-icons edit_employee" data-toggle="tooltip" data-id="<?php echo $row->employeeID?>" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i 
-									class="material-icons delete_employee" data-toggle="tooltip" data-id="<?php echo $row->employeeID?>" title="Delete">&#xE872;</i></a>
+										class="material-icons edit_employee" data-toggle="tooltip"
+										data-id="<?php echo $row->employeeID?>" title="Edit">&#xE254;</i></a>
+
+
+								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+										class="material-icons delete_employee" data-toggle="tooltip"
+										data-id="<?php echo $row->employeeID?>" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
+						<?php endif ?>
 						<?php } ?>
 					</tbody>
 				</table>
@@ -70,13 +90,24 @@
 					</div>
 					<div class="modal-body text-faded">
 						<div class="form-group">
-							<form action="<?php echo site_url('EmployeeFunctions/addEmployee')?>" method="POST">
+							<form action="<?php echo site_url('EmployeeFunctions/addEmployee')?>" method="POST"
+								enctype="multipart/form-data">
+								<div class="upload">
+									<button class="uploadButton">
+										<input class="uploadButton1" type="file" name="image" id="image" required>
+										<i class="bi bi-camera"></i>
+									</button>
+									<p>Upload your photo: <br></p>
+								</div>
 								<div class="row">
 									<div class="col-6">
-										<p>First Name: <br><input type="text" class="form-control" required name="firstname"></p>
-										<p>Last Name: <br><input type="text" class="form-control" required name="lastname"></p>
-										<p>Age: <br><input type="text" class="form-control" required name="age"></p>
-										<p>Address: <br><input type="text" class="form-control"  required name="address"></p>
+										<p>First Name: <br><input type="text" class="form-control" required
+												name="firstname" onkeypress="return /[a-z]/i.test(event.key)"></p>
+										<p>Last Name: <br><input type="text" class="form-control" required
+												name="lastname" onkeypress="return /[a-z]/i.test(event.key)"></p>
+										<p>Age: <br><input type="number" class="form-control" required name="age" min="18" title="Employee must be age 18+"></p>
+										<p>Address: <br><input type="text" class="form-control" required name="address">
+										</p>
 										<p>Position:
 											<select name="position" class="form-control" required id="position">
 												<option value="" selected disabled hidden>Select Position</option>
@@ -88,20 +119,26 @@
 										</p>
 									</div>
 									<div class="col-6">
-										<p>SSS Number: <br><input type="text" class="form-control" required name="sss-number"></p>
-										<p>Pag-IBIG Number: <br><input type="text" class="form-control" required name="pagibig-number"></p>
-										<p>PhilHealth Number: <br><input type="text" class="form-control" required name="philhealth-number"></p>
-										<p>TIN Number: <br><input type="text" class="form-control" required name="tin-number"></p>
-										<p>Employment Date: <br><input type="date" class="form-control" required name="employmentDate"></p><br>
+										<p>SSS Number: <br><input type="number" class="form-control" required
+												name="sss-number"></p>
+										<p>Pag-IBIG Number: <br><input type="number" class="form-control" required
+												name="pagibig-number"></p>
+										<p>PhilHealth Number: <br><input type="number" class="form-control" required
+												name="philhealth-number"></p>
+										<p>TIN Number: <br><input type="number" class="form-control" required
+												name="tin-number"></p>
+										<p>Employment Date: <br><input type="date" class="form-control" required
+												name="employmentDate"></p><br>
 									</div>
 								</div>
 								<div class="editAnnouncementButton d-flex justify-content-end">
-									<button type="cancel" class="btn btn-default bg-white text-dark me-2" value="cancel" data-bs-dismiss="modal">Cancel</button>
+									<button type="cancel" class="btn btn-default bg-white text-dark me-2" value="cancel"
+										data-bs-dismiss="modal">Cancel</button>
 									<button type="submit" class="btn btn-success" value="submit">Add</button>
 								</div>
 							</form>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -113,7 +150,8 @@
 				<div class="modal-content dark-blue">
 					<div class="modal-header">
 						<h5 class="modal-title text-faded" id="editAnnouncementHeader">Edit Employee</h5>
-						<button type="button" class="close text-faded" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<button type="button" class="close text-faded" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body text-faded">
 						<div id="edit_employee" class="form-group"></div>
@@ -183,7 +221,7 @@
 				},
 				success: function (data) {
 					$('#edit_employee').html(data);
-					
+
 				}
 			});
 		});
@@ -197,7 +235,7 @@
 					employeeData: employeeData
 				},
 				success: function (data) {
-					$('#delete_employee').html(data);	
+					$('#delete_employee').html(data);vc 
 				}
 			});
 		});
